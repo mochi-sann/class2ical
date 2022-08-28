@@ -36,20 +36,15 @@ const Home: NextPage = () => {
       end: dayjsWapper().hour(16).weekday(6).add(1.5, "hour").toDate(),
     },
   ];
-  const { DownloadFile } = useClassTableIcal({ init: classList });
+  const { DownloadFile, AddEvent } = useClassTableIcal({ init: classList });
   return (
     <div>
       <Button
         onClick={() => {
-          console.log("クリックしたで");
-          const CalenderBlob = GetClaender().toBlob();
-          const url = window.URL.createObjectURL(
-            new Blob([CalenderBlob], { type: "text/calendar" })
-          );
-          window.open(url);
+          AddEvent(classList);
         }}
       >
-        This is Button
+        addEvent
       </Button>
       <Button
         onClick={() => {
