@@ -9,6 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.2.9",
+    "@emotion/react": "^11.10.0",
+    "@emotion/styled": "^11.10.0",
+    "dayjs": "^1.11.5",
+    "framer-motion": "^7.2.1",
+    "ical-generator": "^3.5.1",
     "next": "12.2.5",
     "react": "18.2.0",
     "react-dom": "18.2.0"
@@ -19,6 +25,7 @@
     "@types/react-dom": "18.0.6",
     "eslint": "8.23.0",
     "eslint-config-next": "12.2.5",
+    "rrule": "^2.7.1",
     "typescript": "4.8.2"
   }
 }
