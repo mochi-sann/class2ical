@@ -2,12 +2,12 @@ import { Button } from "@chakra-ui/react";
 import { Dayjs } from "dayjs";
 import type { NextPage } from "next";
 import { useState } from "react";
+import ClassTableForm from "src/components/ClassTableForm";
 import {
   useClassTableIcal,
   useClassTableIcalProps,
 } from "src/hooks/useClassTableIcal";
 import { dayjsWapper } from "src/lib/dayjs";
-import { GetClaender } from "src/lib/ical";
 
 const Home: NextPage = () => {
   const [fileUrl, setFileUrl] = useState("");
@@ -54,6 +54,7 @@ const Home: NextPage = () => {
         ダウンロードする
       </Button>
       <p>file is {fileUrl}</p>
+      <ClassTableForm />
     </div>
   );
 };

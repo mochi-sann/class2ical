@@ -18,7 +18,8 @@
     "ical-generator": "^3.5.1",
     "next": "12.2.5",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-hook-form": "^7.34.2"
   },
   "devDependencies": {
     "@types/node": "18.7.13",
