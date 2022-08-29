@@ -1,4 +1,4 @@
-import { Dayjs, dayjs } from "./dayjs";
+import { Dayjs, dayjsWapper } from "./dayjs";
 import ical, { ICalCalendar, ICalCalendarJSONData } from "ical-generator";
 
 export const GetClaender = (): ICalCalendar => {
@@ -13,20 +13,20 @@ export const GetClaender = (): ICalCalendar => {
     {
       title: "1つ目",
       summary: "テストの授業1つ目です",
-      start: dayjs().hour(10).weekday(1),
-      end: dayjs().hour(10).weekday(1).add(1.5, "hour"),
+      start: dayjsWapper().hour(10).weekday(1),
+      end: dayjsWapper().hour(10).weekday(1).add(1.5, "hour"),
     },
     {
       title: "2つ目",
       summary: "テストの授業1つ目です",
-      start: dayjs().hour(13).weekday(4),
-      end: dayjs().hour(13).weekday(4).add(1.5, "hour"),
+      start: dayjsWapper().hour(13).weekday(4),
+      end: dayjsWapper().hour(13).weekday(4).add(1.5, "hour"),
     },
     {
       title: "2つ目",
       summary: "テストの授業1つ目です",
-      start: dayjs().hour(16).weekday(6),
-      end: dayjs().hour(16).weekday(6).add(1.5, "hour"),
+      start: dayjsWapper().hour(16).weekday(6),
+      end: dayjsWapper().hour(16).weekday(6).add(1.5, "hour"),
     },
   ];
   classList().map((value) => {

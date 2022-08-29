@@ -50,39 +50,38 @@ const columnHelper = createColumnHelper<Person>();
 const columns = [
   columnHelper.accessor("periodNumber", {
     cell: (info) => info.getValue(),
-
     header: "限目",
     // footer: (info) => info.column.id,
   }),
-  columnHelper.group({
-    header: "day of week",
-    footer: (props) => props.column.id,
-    columns: [
-      columnHelper.accessor("Mon", {
-        cell: (info) => info.getValue(),
-        footer: (info) => info.column.id,
-      }),
-      columnHelper.accessor("Tue", {
-        cell: (info) => info.getValue(),
-        footer: (info) => info.column.id,
-      }),
-      columnHelper.accessor("Wed", {
-        cell: (info) => info.getValue(),
-        footer: (info) => info.column.id,
-      }),
-      columnHelper.accessor("Thu", {
-        cell: (info) => info.getValue(),
-        footer: (info) => info.column.id,
-      }),
-      columnHelper.accessor("Fri", {
-        cell: (info) => info.getValue(),
-        footer: (info) => info.column.id,
-      }),
-      columnHelper.accessor("Sat", {
-        cell: (info) => info.getValue(),
-        footer: (info) => info.column.id,
-      }),
-    ],
+  columnHelper.accessor("Mon", {
+    cell: (info) => info.getValue(),
+    header: "月",
+    footer: (info) => info.column.id,
+  }),
+  columnHelper.accessor("Tue", {
+    cell: (info) => info.getValue(),
+    header: "火",
+    footer: (info) => info.column.id,
+  }),
+  columnHelper.accessor("Wed", {
+    cell: (info) => info.getValue(),
+    header: "水",
+    footer: (info) => info.column.id,
+  }),
+  columnHelper.accessor("Thu", {
+    cell: (info) => info.getValue(),
+    header: "木",
+    footer: (info) => info.column.id,
+  }),
+  columnHelper.accessor("Fri", {
+    cell: (info) => info.getValue(),
+    header: "金",
+    footer: (info) => info.column.id,
+  }),
+  columnHelper.accessor("Sat", {
+    cell: (info) => info.getValue(),
+    header: "土",
+    footer: (info) => info.column.id,
   }),
 ];
 const ClassScheduleTable: React.FC<ClassScheduleTableProps> = (props) => {
@@ -99,50 +98,42 @@ const ClassScheduleTable: React.FC<ClassScheduleTableProps> = (props) => {
     <div>
       {/* <pre>{JSON.stringify(props.table, null, 2)}</pre> */}
       <TableContainer>
-        <Table variant="unstyled">
+        <Table borderWidth={"1px"} borderColor={"gray.900"} variant="unstyled">
           <Thead>
             {table.getHeaderGroups().map((headerGroup) => (
               <Tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                  <th key={header.id}>
+                  <Th
+                    borderWidth={"1px"}
+                    borderColor={"gray.900"}
+                    key={header.id}
+                  >
                     {header.isPlaceholder
                       ? null
                       : flexRender(
                           header.column.columnDef.header,
                           header.getContext()
                         )}
-                  </th>
+                  </Th>
                 ))}
               </Tr>
             ))}
           </Thead>
-          <Tbody>
+          <Tbody borderColor={"red.400"}>
             {table.getRowModel().rows.map((row) => (
               <Tr key={row.id}>
                 {row.getVisibleCells().map((cell) => (
-                  <Td borderWidth={"2px"} key={cell.id}>
+                  <Td
+                    borderWidth={"1px"}
+                    borderColor={"gray.900"}
+                    key={cell.id}
+                  >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </Td>
                 ))}
               </Tr>
             ))}
           </Tbody>
-          <Tfoot>
-            {table.getFooterGroups().map((footerGroup) => (
-              <Tr key={footerGroup.id}>
-                {footerGroup.headers.map((header) => (
-                  <Th key={header.id}>
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
-                          header.column.columnDef.footer,
-                          header.getContext()
-                        )}
-                  </Th>
-                ))}
-              </Tr>
-            ))}
-          </Tfoot>
         </Table>
       </TableContainer>
     </div>
