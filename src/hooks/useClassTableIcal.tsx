@@ -6,7 +6,7 @@ export type useClassTableIcalProps = {
   init: Array<ICalEvent | ICalEventData>;
 };
 export type useClassTableIcalTypes = {
-  DownloadFile: () => void;
+  DownloadFile: () => string;
   setCalenderEvents: Dispatch<SetStateAction<(ICalEvent | ICalEventData)[]>>;
   CalenderEvents: useClassTableIcalProps["init"];
   AddEvent: (event: useClassTableIcalProps["init"]) => void;
@@ -26,16 +26,22 @@ export const useClassTableIcal = (
   };
   const calendar = ical({ name: "授業の時間" });
 
+  calendar.description(
+    "大学の授業表をGoogle calender などにインポートできるます"
+  );
   CalenderEvents.map((event) => {
     calendar.createEvent(event);
   });
 
   // ファイルをダウンロード
   const DownloadFile = (): string => {
-    const CalenderUrl = calendar.toURL();
-    console.log("CalenderBlob", CalenderUrl);
-    window.open(CalenderUrl);
-    return CalenderUrl;
+    try {
+      const CalenderBlob = calendar.toBlob() || "";
+      const CalenderUrl = URL.createObjectURL(CalenderBlob);
+      return CalenderUrl || "/hoge";
+    } catch (error) {
+      return "/";
+    }
   };
 
   return {

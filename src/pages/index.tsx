@@ -1,5 +1,6 @@
-import { Button } from "@chakra-ui/react";
+import { Button, Link } from "@chakra-ui/react";
 import { Dayjs } from "dayjs";
+import { ICalEventRepeatingFreq, ICalWeekday } from "ical-generator";
 import type { NextPage } from "next";
 import { useState } from "react";
 import ClassTableForm from "src/components/ClassTableForm";
@@ -21,19 +22,14 @@ const Home: NextPage = () => {
 
   const classList: useClassTableIcalProps["init"] = [
     {
-      summary: "テストの授業1つ目です",
+      summary: "こんにちはー",
+      repeating: {
+        freq: ICalEventRepeatingFreq["WEEKLY"],
+        until: dayjsWapper("2022-12-10").toDate(),
+        interval: 1,
+      },
       start: dayjsWapper().hour(10).weekday(1).toDate(),
       end: dayjsWapper().hour(10).weekday(1).add(1.5, "hour").toDate(),
-    },
-    {
-      summary: "テストの授業1つ目です",
-      start: dayjsWapper().hour(13).weekday(4).toDate(),
-      end: dayjsWapper().hour(13).weekday(4).add(1.5, "hour").toDate(),
-    },
-    {
-      summary: "テストの授業1つ目です",
-      start: dayjsWapper().hour(16).weekday(6).toDate(),
-      end: dayjsWapper().hour(16).weekday(6).add(1.5, "hour").toDate(),
     },
   ];
   const { DownloadFile, AddEvent } = useClassTableIcal({ init: classList });
@@ -46,13 +42,14 @@ const Home: NextPage = () => {
       >
         addEvent
       </Button>
-      <Button
-        onClick={() => {
-          DownloadFile();
-        }}
-      >
-        ダウンロードする
-      </Button>
+      {DownloadFile() && (
+        <Link href={DownloadFile() || "/hgoe"} download={"hoge"}>
+          りんく
+        </Link>
+      )}
+      {/* <Button as="a" href={DownloadFile() || "/hgoe"} download={"hoge"}> */}
+      {/*   ダウンロードする */}
+      {/* </Button> */}
       <p>file is {fileUrl}</p>
       <ClassTableForm />
     </div>
