@@ -3,6 +3,7 @@ import { Dayjs } from "dayjs";
 import { ICalEventRepeatingFreq, ICalWeekday } from "ical-generator";
 import type { NextPage } from "next";
 import { useState } from "react";
+import ClassScheduleTable from "src/components/ClassScheduleTable";
 import ClassTableForm from "src/components/ClassTableForm";
 import {
   useClassTableIcal,
@@ -32,7 +33,9 @@ const Home: NextPage = () => {
       end: dayjsWapper().hour(10).weekday(1).add(1.5, "hour").toDate(),
     },
   ];
-  const { DownloadFile, AddEvent } = useClassTableIcal({ init: classList });
+  const { DownloadFile, AddEvent, CalenderEvents } = useClassTableIcal({
+    init: classList,
+  });
   return (
     <div>
       <Button
@@ -52,6 +55,7 @@ const Home: NextPage = () => {
       {/* </Button> */}
       <p>file is {fileUrl}</p>
       <ClassTableForm />
+      <ClassScheduleTable table={CalenderEvents} />
     </div>
   );
 };

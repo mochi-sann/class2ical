@@ -13,6 +13,7 @@
     "@chakra-ui/react": "^2.2.9",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
+    "@tanstack/react-table": "^8.5.11",
     "dayjs": "^1.11.5",
     "framer-motion": "^7.2.1",
     "ical-generator": "^3.5.1",
