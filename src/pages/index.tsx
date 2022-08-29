@@ -1,5 +1,4 @@
-import { Button, Link } from "@chakra-ui/react";
-import { Dayjs } from "dayjs";
+import { Button, HStack, Link, VStack } from "@chakra-ui/react";
 import { ICalEventRepeatingFreq, ICalWeekday } from "ical-generator";
 import type { NextPage } from "next";
 import { useState } from "react";
@@ -9,7 +8,7 @@ import {
   useClassTableIcal,
   useClassTableIcalProps,
 } from "src/hooks/useClassTableIcal";
-import { dayjsWapper } from "src/lib/dayjs";
+import { Dayjs, dayjsWapper } from "src/lib/dayjs";
 
 const Home: NextPage = () => {
   const [fileUrl, setFileUrl] = useState("");
@@ -38,18 +37,18 @@ const Home: NextPage = () => {
   });
   return (
     <div>
-      <Button
-        onClick={() => {
-          AddEvent(classList);
-        }}
-      >
-        addEvent
-      </Button>
-      {DownloadFile() && (
-        <Link href={DownloadFile() || "/hgoe"} download={"hoge"}>
-          りんく
-        </Link>
-      )}
+      <HStack>
+        <Button
+          onClick={() => {
+            AddEvent(classList);
+          }}
+        >
+          addEvent
+        </Button>
+        <Button as="a" href={DownloadFile() || "/hgoe"} download={"hoge"}>
+          ダウンロード
+        </Button>
+      </HStack>
       {/* <Button as="a" href={DownloadFile() || "/hgoe"} download={"hoge"}> */}
       {/*   ダウンロードする */}
       {/* </Button> */}
