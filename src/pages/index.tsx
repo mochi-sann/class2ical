@@ -55,7 +55,7 @@ const Home: NextPage = () => {
       {/* </Button> */}
       <p>file is {fileUrl}</p>
       <ClassTableForm />
-      <ClassScheduleTable table={CalenderEvents} />
+      <ClassScheduleTable />
     </div>
   );
 };
