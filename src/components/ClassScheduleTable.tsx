@@ -9,76 +9,80 @@ import {
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import {
+  Table,
+  TableContainer,
+  Tbody,
+  Td,
+  Tfoot,
+  Th,
+  Thead,
+  Tr,
+} from "@chakra-ui/react";
 
 export type ClassScheduleTableProps = {
   // table: useClassTableIcalProps["init"];
 };
 
 type Person = {
-  firstName: string;
-  lastName: string;
-  age: number;
-  visits: number;
-  status: string;
-  progress: number;
+  periodNumber: number;
+  Mon: string | null;
+  Tue: string | null;
+  Wed: string | null;
+  Thu: string | null;
+  Fri: string | null;
+  Sat: string | null;
 };
 
-const defaultData: Person[] = [
-  {
-    firstName: "tanner",
-    lastName: "linsley",
-    age: 24,
-    visits: 100,
-    status: "In Relationship",
-    progress: 50,
-  },
-  {
-    firstName: "tandy",
-    lastName: "miller",
-    age: 40,
-    visits: 40,
-    status: "Single",
-    progress: 80,
-  },
-  {
-    firstName: "joe",
-    lastName: "dirte",
-    age: 45,
-    visits: 20,
-    status: "Complicated",
-    progress: 10,
-  },
-];
-
+const defaultData: Person[] = [1, 2, 3, 4, 5, 6].map((value) => {
+  return {
+    periodNumber: value,
+    Mon: "Mon" + value,
+    Tue: "Tue" + value,
+    Wed: "Wed" + value,
+    Thu: "Thu" + value,
+    Fri: "Fri" + value,
+    Sat: "Sat" + value,
+  };
+});
 const columnHelper = createColumnHelper<Person>();
-
+// period = 授業の何限なのか
 const columns = [
-  columnHelper.accessor("firstName", {
+  columnHelper.accessor("periodNumber", {
     cell: (info) => info.getValue(),
-    footer: (info) => info.column.id,
+
+    header: "限目",
+    // footer: (info) => info.column.id,
   }),
-  columnHelper.accessor((row) => row.lastName, {
-    id: "lastName",
-    cell: (info) => <i>{info.getValue()}</i>,
-    header: () => <span>Last Name</span>,
-    footer: (info) => info.column.id,
-  }),
-  columnHelper.accessor("age", {
-    header: () => "Age",
-    cell: (info) => info.renderValue(),
-    footer: (info) => info.column.id,
-  }),
-  columnHelper.accessor("visits", {
-    header: () => <span>Visits</span>,
-    footer: (info) => info.column.id,
-  }),
-  columnHelper.accessor("status", {
-    header: "Status",
-    footer: (info) => info.column.id,
-  }),
-  columnHelper.accessor("progress", {
-    header: "Profile Progress",
-    footer: (info) => info.column.id,
+  columnHelper.group({
+    header: "day of week",
+    footer: (props) => props.column.id,
+    columns: [
+      columnHelper.accessor("Mon", {
+        cell: (info) => info.getValue(),
+        footer: (info) => info.column.id,
+      }),
+      columnHelper.accessor("Tue", {
+        cell: (info) => info.getValue(),
+        footer: (info) => info.column.id,
+      }),
+      columnHelper.accessor("Wed", {
+        cell: (info) => info.getValue(),
+        footer: (info) => info.column.id,
+      }),
+      columnHelper.accessor("Thu", {
+        cell: (info) => info.getValue(),
+        footer: (info) => info.column.id,
+      }),
+      columnHelper.accessor("Fri", {
+        cell: (info) => info.getValue(),
+        footer: (info) => info.column.id,
+      }),
+      columnHelper.accessor("Sat", {
+        cell: (info) => info.getValue(),
+        footer: (info) => info.column.id,
+      }),
+    ],
   }),
 ];
 const ClassScheduleTable: React.FC<ClassScheduleTableProps> = (props) => {
@@ -93,12 +97,12 @@ const ClassScheduleTable: React.FC<ClassScheduleTableProps> = (props) => {
 
   return (
     <div>
-      <pre>{JSON.stringify(props.table, null, 2)}</pre>
-      <div>
-        <table>
-          <thead>
+      {/* <pre>{JSON.stringify(props.table, null, 2)}</pre> */}
+      <TableContainer>
+        <Table variant="unstyled">
+          <Thead>
             {table.getHeaderGroups().map((headerGroup) => (
-              <tr key={headerGroup.id}>
+              <Tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
                   <th key={header.id}>
                     {header.isPlaceholder
@@ -109,38 +113,38 @@ const ClassScheduleTable: React.FC<ClassScheduleTableProps> = (props) => {
                         )}
                   </th>
                 ))}
-              </tr>
+              </Tr>
             ))}
-          </thead>
-          <tbody>
+          </Thead>
+          <Tbody>
             {table.getRowModel().rows.map((row) => (
-              <tr key={row.id}>
+              <Tr key={row.id}>
                 {row.getVisibleCells().map((cell) => (
-                  <td key={cell.id}>
+                  <Td borderWidth={"2px"} key={cell.id}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </td>
+                  </Td>
                 ))}
-              </tr>
+              </Tr>
             ))}
-          </tbody>
-          <tfoot>
+          </Tbody>
+          <Tfoot>
             {table.getFooterGroups().map((footerGroup) => (
-              <tr key={footerGroup.id}>
+              <Tr key={footerGroup.id}>
                 {footerGroup.headers.map((header) => (
-                  <th key={header.id}>
+                  <Th key={header.id}>
                     {header.isPlaceholder
                       ? null
                       : flexRender(
                           header.column.columnDef.footer,
                           header.getContext()
                         )}
-                  </th>
+                  </Th>
                 ))}
-              </tr>
+              </Tr>
             ))}
-          </tfoot>
-        </table>
-      </div>
+          </Tfoot>
+        </Table>
+      </TableContainer>
     </div>
   );
 };
