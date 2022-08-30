@@ -1,9 +1,5 @@
 import React from "react";
 import {
-  useClassTableIcal,
-  useClassTableIcalProps,
-} from "src/hooks/useClassTableIcal";
-import {
   createColumnHelper,
   flexRender,
   getCoreRowModel,
@@ -14,7 +10,6 @@ import {
   TableContainer,
   Tbody,
   Td,
-  Tfoot,
   Th,
   Thead,
   Tr,
@@ -26,23 +21,31 @@ export type ClassScheduleTableProps = {
 
 type Person = {
   periodNumber: number;
-  Mon: string | null;
-  Tue: string | null;
-  Wed: string | null;
-  Thu: string | null;
-  Fri: string | null;
-  Sat: string | null;
+  Mon: null | React.ReactElement;
+  Tue: null | React.ReactElement;
+  Wed: null | React.ReactElement;
+  Thu: null | React.ReactElement;
+  Fri: null | React.ReactElement;
+  Sat: null | React.ReactElement;
 };
 
 const defaultData: Person[] = [1, 2, 3, 4, 5, 6].map((value) => {
   return {
     periodNumber: value,
-    Mon: "Mon" + value,
-    Tue: "Tue" + value,
-    Wed: "Wed" + value,
-    Thu: "Thu" + value,
-    Fri: "Fri" + value,
-    Sat: "Sat" + value,
+    Mon: (
+      <div>
+        <p>テキストテキスト</p>
+      </div>
+    ),
+    Tue: (
+      <div>
+        <p>this is Tue</p>
+      </div>
+    ),
+    Wed: null,
+    Thu: null,
+    Fri: null,
+    Sat: null,
   };
 });
 const columnHelper = createColumnHelper<Person>();
@@ -51,7 +54,6 @@ const columns = [
   columnHelper.accessor("periodNumber", {
     cell: (info) => info.getValue(),
     header: "限目",
-    // footer: (info) => info.column.id,
   }),
   columnHelper.accessor("Mon", {
     cell: (info) => info.getValue(),
@@ -98,14 +100,21 @@ const ClassScheduleTable: React.FC<ClassScheduleTableProps> = (props) => {
     <div>
       {/* <pre>{JSON.stringify(props.table, null, 2)}</pre> */}
       <TableContainer>
-        <Table borderWidth={"1px"} borderColor={"gray.900"} variant="unstyled">
+        <Table
+          border={"2px"}
+          borderRadius={"md"}
+          borderColor={"gray.500"}
+          variant="unstyled"
+        >
           <Thead>
             {table.getHeaderGroups().map((headerGroup) => (
               <Tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
                   <Th
                     borderWidth={"1px"}
-                    borderColor={"gray.900"}
+                    borderColor={"gray.500"}
+                    textAlign={"center"}
+                    _first={{ width: "10px" }}
                     key={header.id}
                   >
                     {header.isPlaceholder
@@ -119,13 +128,20 @@ const ClassScheduleTable: React.FC<ClassScheduleTableProps> = (props) => {
               </Tr>
             ))}
           </Thead>
-          <Tbody borderColor={"red.400"}>
+          <Tbody>
             {table.getRowModel().rows.map((row) => (
-              <Tr key={row.id}>
+              <Tr
+                borderBottomWidth={"1px"}
+                borderTopWidth={"1px"}
+                borderColor={"gray.500"}
+                key={row.id}
+              >
                 {row.getVisibleCells().map((cell) => (
                   <Td
-                    borderWidth={"1px"}
-                    borderColor={"gray.900"}
+                    textAlign={"center"}
+                    _first={{ borderStartWidth: "0px" }}
+                    borderStartWidth={"1px"}
+                    borderColor={"gray.500"}
                     key={cell.id}
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
