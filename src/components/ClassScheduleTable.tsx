@@ -14,6 +14,7 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
+import AddLesson from "./AddLesson";
 
 export type ClassScheduleTableProps = {
   // table: useClassTableIcalProps["init"];
@@ -32,20 +33,12 @@ type Person = {
 const defaultData: Person[] = [1, 2, 3, 4, 5, 6].map((value) => {
   return {
     periodNumber: value,
-    Mon: (
-      <div>
-        <p>テキストテキスト</p>
-      </div>
-    ),
-    Tue: (
-      <div>
-        <p>this is Tue</p>
-      </div>
-    ),
-    Wed: null,
-    Thu: null,
-    Fri: null,
-    Sat: null,
+    Mon: <AddLesson />,
+    Tue: <AddLesson />,
+    Wed: <AddLesson />,
+    Thu: <AddLesson />,
+    Fri: <AddLesson />,
+    Sat: <AddLesson />,
   };
 });
 const columnHelper = createColumnHelper<Person>();
