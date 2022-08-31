@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import InputForm from "./InputForm";
+import FormInputText from "./FormInputText";
 
 type FormValue = {
   summary: string;
@@ -36,11 +36,12 @@ const ClassTableForm: React.FC = () => {
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <VStack spacing={4} py="4" align="stretch">
-          <InputForm
+          <FormInputText
             id="summary"
             name="summary"
             placeholder="授業名"
             label="授業名"
+            required="必須項目です"
           />
           <FormControl>
             <FormLabel htmlFor="description">授業の説明</FormLabel>
