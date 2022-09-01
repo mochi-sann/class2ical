@@ -13,6 +13,7 @@ import {
 import { AddIcon } from "@chakra-ui/icons";
 import FormInputText from "./FormInputText";
 import FormTextarea from "./FormTextarea";
+import { useFormContext } from "react-hook-form";
 export type AddLessonProps = {
   periodNumber: number;
   dayOfweek: "Mon" | "Tue" | "Wed" | "Thu" | "Fri" | "Sat";
@@ -20,15 +21,22 @@ export type AddLessonProps = {
 
 const AddLesson: React.FC<AddLessonProps> = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { watch } = useFormContext(); // retrieve all hook methods
 
+  const IsSetClass: boolean =
+    watch()[props.dayOfweek] && watch()[props.dayOfweek][props.periodNumber];
   return (
     <>
-      <IconButton
-        colorScheme="blue"
-        onClick={onOpen}
-        aria-label="授業を追加する"
-        icon={<AddIcon />}
-      />
+      {IsSetClass ? (
+        watch()[props.dayOfweek][props.periodNumber].summary
+      ) : (
+        <IconButton
+          colorScheme="blue"
+          onClick={onOpen}
+          aria-label="授業を追加する"
+          icon={<AddIcon />}
+        />
+      )}
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
