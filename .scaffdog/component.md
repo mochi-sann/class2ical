@@ -1,6 +1,6 @@
 ---
 name: "component"
-root: "./src/components"
+root: "./src/components/"
 output: "**/*"
 ignore: []
 questions:
@@ -25,11 +25,11 @@ const {{ inputs.componentName | pascal }}: React.FC<{{ inputs.componentName | pa
 export default {{ inputs.componentName | pascal }};
 ```
 
-# `{{ inputs.componentName | pascal }}.stories.tsx`
+# `stories/{{ inputs.componentName | pascal }}.stories.tsx`
 
 ```typescript
 import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
-import {{ inputs.componentName | pascal }} from "./{{ inputs.componentName | pascal }}";
+import {{ inputs.componentName | pascal }} from "../{{ inputs.componentName | pascal }}";
 
 export default { component: {{ inputs.componentName | pascal }} } as ComponentMeta<typeof {{ inputs.componentName | pascal }}>;
 
