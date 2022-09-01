@@ -31,7 +31,7 @@ export default {{ inputs.componentName | pascal }};
 import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
 import {{ inputs.componentName | pascal }} from "../{{ inputs.componentName | pascal }}";
 
-export default { component: {{ inputs.componentName | pascal }} } as ComponentMeta<typeof {{ inputs.componentName | pascal }}>;
+export default { component: {{ inputs.componentName | pascal }}  , title : "{{ inputs.componentName | pascal }}"} as ComponentMeta<typeof {{ inputs.componentName | pascal }}>;
 
 export const Index: ComponentStoryObj<typeof {{ inputs.componentName | pascal }}> = {
   args: {
