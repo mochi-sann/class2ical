@@ -14,6 +14,7 @@ export type InputFormProps = {
   label: string;
   placeholder: string;
   required?: string | ValidationRule<boolean> | undefined;
+  defaultValue?: string;
 };
 
 const FormInputText: React.FC<InputFormProps> = (props) => {
@@ -26,6 +27,7 @@ const FormInputText: React.FC<InputFormProps> = (props) => {
     <FormControl id={props.id} isRequired={props.required ? true : false}>
       <FormLabel htmlFor={props.id}>{props.label}</FormLabel>
       <Input
+        defaultValue={props.defaultValue}
         {...register(props.name, { required: props.required })}
         type="text"
         placeholder={props.placeholder}

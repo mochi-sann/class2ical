@@ -21,18 +21,18 @@ import AddLesson from "./AddLesson";
 export type ClassScheduleTableProps = {
   // table: useClassTableIcalProps["init"];
 };
-type FormValue = {
+type lessonValue = {
   summary: string;
   description: string;
-  classPeriod: number;
-  weekOfDay:
-    | "Sunday"
-    | "Monday"
-    | "Tuesday"
-    | "Wednesday"
-    | "Thursday"
-    | "Friday"
-    | "Saturday";
+  url: number;
+};
+type FormValue = {
+  Mon: lessonValue[];
+  Tue: lessonValue[];
+  Wed: lessonValue[];
+  Thu: lessonValue[];
+  Fri: lessonValue[];
+  Sat: lessonValue[];
 };
 
 type Person = {
@@ -45,7 +45,7 @@ type Person = {
   Sat: null | React.ReactElement;
 };
 
-const defaultData: Person[] = [1, 2, 3, 4, 5, 6].map((value) => {
+const defaultData: Person[] = [0, 1, 2, 3, 4, 5].map((value) => {
   return {
     periodNumber: value,
     Mon: <AddLesson dayOfweek="Mon" periodNumber={value} />,
@@ -105,7 +105,16 @@ const ClassScheduleTable: React.FC<ClassScheduleTableProps> = (props) => {
     getCoreRowModel: getCoreRowModel(),
   });
 
-  const methods = useForm<FormValue>();
+  const methods = useForm<FormValue>({
+    defaultValues: {
+      Mon: new Array(6).fill({ summary: "", description: "", url: "" }),
+      Tue: new Array(6).fill({ summary: "", description: "", url: "" }),
+      Wed: new Array(6).fill({ summary: "", description: "", url: "" }),
+      Thu: new Array(6).fill({ summary: "", description: "", url: "" }),
+      Fri: new Array(6).fill({ summary: "", description: "", url: "" }),
+      Sat: new Array(6).fill({ summary: "", description: "", url: "" }),
+    },
+  });
   const onSubmit = (data: FormValue) =>
     console.log("submit!!", JSON.stringify(data, null, 2));
   return (

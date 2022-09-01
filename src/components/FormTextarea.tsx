@@ -10,6 +10,7 @@ export type FormTextareaProps = {
   placeholder: string;
   miniRows?: number;
   required?: string | ValidationRule<boolean> | undefined;
+  defaultValue?: string;
 };
 
 const FormTextarea: React.FC<FormTextareaProps> = (props) => {
@@ -22,6 +23,7 @@ const FormTextarea: React.FC<FormTextareaProps> = (props) => {
     <FormControl id={props.id} isRequired={props.required ? true : false}>
       <FormLabel htmlFor={props.id}>{props.label}</FormLabel>
       <AutoResizeTextarea
+        defaultValue={props.defaultValue}
         {...register(props.name, { required: props.required })}
         placeholder={props.placeholder}
         minRows={props.miniRows}

@@ -22,9 +22,11 @@ export type AddLessonProps = {
 const AddLesson: React.FC<AddLessonProps> = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { watch } = useFormContext(); // retrieve all hook methods
-
-  const IsSetClass: boolean =
-    watch()[props.dayOfweek] && watch()[props.dayOfweek][props.periodNumber];
+  const FormNumber = `${props.dayOfweek}.${props.periodNumber}`;
+  const IsSetClass =
+    watch()[props.dayOfweek] &&
+    watch()[props.dayOfweek][props.periodNumber] &&
+    watch()[props.dayOfweek][props.periodNumber].summar !== "";
   return (
     <>
       {IsSetClass ? (
@@ -45,22 +47,25 @@ const AddLesson: React.FC<AddLessonProps> = (props) => {
           <ModalBody>
             <VStack spacing={4} py="4" align="stretch">
               <FormInputText
-                id={`${props.dayOfweek}.${props.periodNumber}.summary`}
-                name={`${props.dayOfweek}.${props.periodNumber}.summary`}
+                id={`${FormNumber}.summary`}
+                name={`${FormNumber}.summary`}
                 placeholder="授業名"
                 label="授業名"
                 required="必須項目です"
+                defaultValue=""
               />
               <FormTextarea
-                id={`${props.dayOfweek}.${props.periodNumber}.description`}
-                name={`${props.dayOfweek}.${props.periodNumber}.description`}
+                id={`${FormNumber}.description`}
+                name={`${FormNumber}.description`}
                 label="メモ"
                 placeholder="メモ"
+                defaultValue=""
                 miniRows={4}
               />
               <FormInputText
-                id={`${props.dayOfweek}.${props.periodNumber}.url`}
-                name={`${props.dayOfweek}.${props.periodNumber}.url`}
+                id={`${FormNumber}.url`}
+                name={`${FormNumber}.url`}
+                defaultValue=""
                 placeholder="URL"
                 label="URL"
               />
