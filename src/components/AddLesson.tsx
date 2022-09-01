@@ -14,6 +14,7 @@ import { AddIcon } from "@chakra-ui/icons";
 import FormInputText from "./FormInputText";
 import FormTextarea from "./FormTextarea";
 import { useFormContext } from "react-hook-form";
+import TableLessonBox from "./TableLessonBox";
 export type AddLessonProps = {
   periodNumber: number;
   dayOfweek: "Mon" | "Tue" | "Wed" | "Thu" | "Fri" | "Sat";
@@ -27,10 +28,17 @@ const AddLesson: React.FC<AddLessonProps> = (props) => {
     watch()[props.dayOfweek] &&
     watch()[props.dayOfweek][props.periodNumber] &&
     watch()[props.dayOfweek][props.periodNumber].summar !== "";
+
   return (
     <>
       {IsSetClass ? (
-        watch()[props.dayOfweek][props.periodNumber].summary
+        <TableLessonBox
+          LessonTitle={
+            watch()[props.dayOfweek][props.periodNumber].summary as string
+          }
+          onOpen={onOpen}
+          onRemove={() => console.log("close")}
+        />
       ) : (
         <IconButton
           colorScheme="blue"

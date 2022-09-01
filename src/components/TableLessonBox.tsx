@@ -18,26 +18,24 @@ export type TableLessonBoxProps = {
 
 const TableLessonBox: React.FC<TableLessonBoxProps> = (props) => {
   return (
-    <>
-      <Box
-        borderWidth={"2px"}
-        boxShadow={"sm"}
-        borderRadius="md"
-        borderColor={"gray.600"}
-        p={2}
-      >
-        <HStack>
-          <Spacer />
-          <CloseButton onClick={() => props.onRemove()} colorScheme={"red"} />
-        </HStack>
-        <Flex flexDir={"column"} gap="2">
-          <Text textAlign={"center"}>{props.LessonTitle}</Text>
-          <Button onClick={() => props.onOpen()} w="full" variant={"ghost"}>
-            開く
-          </Button>
-        </Flex>
-      </Box>
-    </>
+    <Box
+      borderWidth={"2px"}
+      boxShadow={"sm"}
+      borderRadius="md"
+      borderColor={"gray.600"}
+      p={2}
+    >
+      <HStack>
+        <Spacer />
+        <CloseButton onClick={() => props.onRemove()} colorScheme={"red"} />
+      </HStack>
+      <Flex flexDir={"column"} gap="2">
+        <Text textAlign={"center"}>{props.LessonTitle}</Text>
+        <Button onClick={() => props.onOpen()} w="full" variant={"ghost"}>
+          開く
+        </Button>
+      </Flex>
+    </Box>
   );
 };
 
