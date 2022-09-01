@@ -23,7 +23,7 @@ const FormInputText: React.FC<InputFormProps> = (props) => {
   } = useFormContext();
 
   return (
-    <FormControl id={props.id}>
+    <FormControl id={props.id} isRequired={props.required ? true : false}>
       <FormLabel htmlFor={props.id}>{props.label}</FormLabel>
       <Input
         {...register(props.name, { required: props.required })}

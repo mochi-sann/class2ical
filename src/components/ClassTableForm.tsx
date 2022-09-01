@@ -30,7 +30,6 @@ const ClassTableForm: React.FC = () => {
 
   const onSubmit = (data: FormValue) =>
     console.log("submit!!", JSON.stringify(data, null, 2));
-  console.log("methods.formState.errors", methods.formState.errors);
   // TODO : なんかいい感じにする
   return (
     <FormProvider {...methods}>
@@ -46,46 +45,11 @@ const ClassTableForm: React.FC = () => {
           <FormTextarea
             id="description"
             name="description"
-            label="授業の説明"
-            placeholder="授業の説明"
+            label="メモ"
+            placeholder="メモ"
             miniRows={4}
           />
-          <FormControl>
-            <FormLabel htmlFor="classPeriod">授業の説明</FormLabel>
-            <Select {...methods.register("classPeriod", { required: true })}>
-              {[1, 2, 3, 4, 5, 6].map((value) => (
-                <option key={value} value={value}>
-                  {value}限目
-                </option>
-              ))}
-            </Select>
-            <FormErrorMessage>
-              {methods.formState.errors.classPeriod &&
-                methods.formState.errors.classPeriod.message}
-            </FormErrorMessage>
-          </FormControl>
-          <FormControl>
-            <FormLabel htmlFor="weekOfDay">授業の曜日</FormLabel>
-            <Select {...methods.register("weekOfDay")}>
-              {[
-                "Sunday",
-                "Monday",
-                "Tuesday",
-                "Wednesday",
-                "Thursday",
-                "Friday",
-                "Saturday",
-              ].map((value) => (
-                <option key={value} value={value}>
-                  {value}
-                </option>
-              ))}
-            </Select>
-            <FormErrorMessage>
-              {methods.formState.errors.weekOfDay &&
-                methods.formState.errors.weekOfDay.message}
-            </FormErrorMessage>
-          </FormControl>
+          <FormInputText id="url" name="url" placeholder="URL" label="URL" />
 
           <Button type={"submit"} w="full" colorScheme={"blue"}>
             add
