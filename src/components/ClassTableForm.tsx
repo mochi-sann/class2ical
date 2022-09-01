@@ -48,6 +48,7 @@ const ClassTableForm: React.FC = () => {
             name="description"
             label="授業の説明"
             placeholder="授業の説明"
+            miniRows={4}
           />
           <FormControl>
             <FormLabel htmlFor="classPeriod">授業の説明</FormLabel>
