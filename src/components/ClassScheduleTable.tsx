@@ -48,12 +48,12 @@ type Person = {
 const defaultData: Person[] = [1, 2, 3, 4, 5, 6].map((value) => {
   return {
     periodNumber: value,
-    Mon: <AddLesson />,
-    Tue: <AddLesson />,
-    Wed: <AddLesson />,
-    Thu: <AddLesson />,
-    Fri: <AddLesson />,
-    Sat: <AddLesson />,
+    Mon: <AddLesson dayOfweek="Mon" periodNumber={value} />,
+    Tue: <AddLesson dayOfweek="Tue" periodNumber={value} />,
+    Wed: <AddLesson dayOfweek="Wed" periodNumber={value} />,
+    Thu: <AddLesson dayOfweek="Thu" periodNumber={value} />,
+    Fri: <AddLesson dayOfweek="Fri" periodNumber={value} />,
+    Sat: <AddLesson dayOfweek="Sat" periodNumber={value} />,
   };
 });
 const columnHelper = createColumnHelper<Person>();

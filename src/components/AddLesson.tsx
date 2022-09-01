@@ -11,10 +11,12 @@ import {
 } from "@chakra-ui/react";
 
 import { AddIcon } from "@chakra-ui/icons";
-import ClassTableForm from "./ClassTableForm";
 import FormInputText from "./FormInputText";
 import FormTextarea from "./FormTextarea";
-export type AddLessonProps = {};
+export type AddLessonProps = {
+  periodNumber: number;
+  dayOfweek: "Mon" | "Tue" | "Wed" | "Thu" | "Fri" | "Sat";
+};
 
 const AddLesson: React.FC<AddLessonProps> = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -35,22 +37,22 @@ const AddLesson: React.FC<AddLessonProps> = (props) => {
           <ModalBody>
             <VStack spacing={4} py="4" align="stretch">
               <FormInputText
-                id="summary"
-                name="summary"
+                id={`${props.dayOfweek}.${props.periodNumber}.summary`}
+                name={`${props.dayOfweek}.${props.periodNumber}.summary`}
                 placeholder="授業名"
                 label="授業名"
                 required="必須項目です"
               />
               <FormTextarea
-                id="description"
-                name="description"
+                id={`${props.dayOfweek}.${props.periodNumber}.description`}
+                name={`${props.dayOfweek}.${props.periodNumber}.description`}
                 label="メモ"
                 placeholder="メモ"
                 miniRows={4}
               />
               <FormInputText
-                id="url"
-                name="url"
+                id={`${props.dayOfweek}.${props.periodNumber}.url`}
+                name={`${props.dayOfweek}.${props.periodNumber}.url`}
                 placeholder="URL"
                 label="URL"
               />
