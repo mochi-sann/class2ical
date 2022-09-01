@@ -1,14 +1,9 @@
-import {
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Input,
-} from "@chakra-ui/react";
 import React from "react";
 import { useFormContext, ValidationRule } from "react-hook-form";
+import { FormControl, FormErrorMessage, FormLabel } from "@chakra-ui/react";
 import { ErrorMessage } from "@hookform/error-message";
-
-export type InputFormProps = {
+import { AutoResizeTextarea } from "./AutoResizeTextarea";
+export type FormTextareaProps = {
   id: string;
   name: string;
   label: string;
@@ -16,7 +11,7 @@ export type InputFormProps = {
   required?: string | ValidationRule<boolean> | undefined;
 };
 
-const FormInputText: React.FC<InputFormProps> = (props) => {
+const FormTextarea: React.FC<FormTextareaProps> = (props) => {
   const {
     register,
     formState: { errors },
@@ -25,9 +20,8 @@ const FormInputText: React.FC<InputFormProps> = (props) => {
   return (
     <FormControl id={props.id}>
       <FormLabel htmlFor={props.id}>{props.label}</FormLabel>
-      <Input
+      <AutoResizeTextarea
         {...register(props.name, { required: props.required })}
-        type="text"
         placeholder={props.placeholder}
       />
       <ErrorMessage
@@ -41,4 +35,4 @@ const FormInputText: React.FC<InputFormProps> = (props) => {
   );
 };
 
-export default FormInputText;
+export default FormTextarea;

@@ -3,7 +3,6 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
-  Input,
   Select,
   Textarea,
   VStack,
@@ -11,6 +10,7 @@ import {
 import React from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import FormInputText from "./FormInputText";
+import FormTextarea from "./FormTextarea";
 
 type FormValue = {
   summary: string;
@@ -43,14 +43,12 @@ const ClassTableForm: React.FC = () => {
             label="授業名"
             required="必須項目です"
           />
-          <FormControl>
-            <FormLabel htmlFor="description">授業の説明</FormLabel>
-            <Textarea {...methods.register("description", {})} />
-            <FormErrorMessage>
-              {methods.formState.errors.description &&
-                methods.formState.errors.description.message}
-            </FormErrorMessage>
-          </FormControl>
+          <FormTextarea
+            id="description"
+            name="description"
+            label="授業の説明"
+            placeholder="授業の説明"
+          />
           <FormControl>
             <FormLabel htmlFor="classPeriod">授業の説明</FormLabel>
             <Select {...methods.register("classPeriod", { required: true })}>
