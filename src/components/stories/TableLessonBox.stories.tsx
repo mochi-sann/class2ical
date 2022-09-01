@@ -5,8 +5,8 @@ export default {
   component: TableLessonBox,
   title: "TableLessonBox",
   argTypes: {
-    remove: { action: "remove" },
-    open: { action: "open" },
+    onRemove: { action: "remove" },
+    onOpen: { action: "open" },
   },
 } as ComponentMeta<typeof TableLessonBox>;
 
