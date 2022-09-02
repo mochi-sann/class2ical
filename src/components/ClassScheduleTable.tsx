@@ -110,17 +110,25 @@ const ClassScheduleTable: React.FC<ClassScheduleTableProps> = (props) => {
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
-
+  const TestClassSchedule = (dayOfweek: string) => {
+    return {
+      summary: "テスト授業" + dayOfweek,
+      description: "テスト授業の説明",
+      url: "https://www.google.com/",
+    };
+  };
   const methods = useForm<FormValue>({
     defaultValues: {
-      endDate: dayjsWapper().format("YYYY-MM-DD"),
-      statDate: dayjsWapper().format("YYYY-MM-DD"),
-      Mon: new Array(6).fill({ summary: "", description: "", url: "" }),
-      Tue: new Array(6).fill({ summary: "", description: "", url: "" }),
-      Wed: new Array(6).fill({ summary: "", description: "", url: "" }),
-      Thu: new Array(6).fill({ summary: "", description: "", url: "" }),
-      Fri: new Array(6).fill({ summary: "", description: "", url: "" }),
-      Sat: new Array(6).fill({ summary: "", description: "", url: "" }),
+      statDate: dayjsWapper("2022-09-21").format("YYYY-MM-DD"),
+      endDate: dayjsWapper("2022-09-21")
+        .add(8 * 7 - 1, "days")
+        .format("YYYY-MM-DD"),
+      Mon: new Array(6).fill({ ...TestClassSchedule("Mon") }),
+      Tue: new Array(6).fill({ ...TestClassSchedule("Tue") }),
+      Wed: new Array(6).fill({ ...TestClassSchedule("Wed") }),
+      Thu: new Array(6).fill({ ...TestClassSchedule("Thu") }),
+      Fri: new Array(6).fill({ ...TestClassSchedule("Fri") }),
+      Sat: new Array(6).fill({ ...TestClassSchedule("Sat") }),
     },
   });
   const onSubmit = (data: FormValue) =>
