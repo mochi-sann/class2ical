@@ -1,3 +1,6 @@
+import React, { useState } from "react";
+
+import { AddIcon } from "@chakra-ui/icons";
 import {
   Button,
   HStack,
@@ -5,7 +8,6 @@ import {
   useDisclosure,
   VStack,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
 import {
   Modal,
   ModalOverlay,
@@ -14,13 +16,13 @@ import {
   ModalFooter,
   ModalBody,
 } from "@chakra-ui/react";
+import { useFormContext } from "react-hook-form";
 
-import { AddIcon } from "@chakra-ui/icons";
+import { ShortDayOfWeekList } from "src/lib/types";
+
 import FormInputText from "./FormInputText";
 import FormTextarea from "./FormTextarea";
-import { useFormContext } from "react-hook-form";
 import TableLessonBox from "./TableLessonBox";
-import { ShortDayOfWeekList } from "src/lib/types";
 
 export type AddLessonProps = {
   periodNumber: number;

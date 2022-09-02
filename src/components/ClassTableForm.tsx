@@ -1,3 +1,5 @@
+import React from "react";
+
 import {
   Button,
   FormControl,
@@ -7,8 +9,8 @@ import {
   Textarea,
   VStack,
 } from "@chakra-ui/react";
-import React from "react";
 import { FormProvider, useForm } from "react-hook-form";
+
 import FormInputText from "./FormInputText";
 import FormTextarea from "./FormTextarea";
 

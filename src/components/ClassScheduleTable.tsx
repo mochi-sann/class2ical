@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  createColumnHelper,
-  flexRender,
-  getCoreRowModel,
-  useReactTable,
-} from "@tanstack/react-table";
+
 import {
   Button,
   Flex,
@@ -17,10 +12,18 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
+import {
+  createColumnHelper,
+  flexRender,
+  getCoreRowModel,
+  useReactTable,
+} from "@tanstack/react-table";
 import { FormProvider, useForm } from "react-hook-form";
+
+import { dayjsWapper } from "src/lib/dayjs";
+
 import AddLesson from "./AddLesson";
 import FormInputDate from "./FormInputDate";
-import { dayjsWapper } from "src/lib/dayjs";
 import FormNumberInput from "./FormNumberInput";
 
 export type ClassScheduleTableProps = {
