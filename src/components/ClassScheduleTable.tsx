@@ -32,7 +32,7 @@ type lessonValue = {
   url: number;
 };
 export type FormValue = {
-  statDate: string;
+  startDate: string;
   endDate: string;
   Mon: lessonValue[];
   Tue: lessonValue[];
@@ -119,7 +119,7 @@ const ClassScheduleTable: React.FC<ClassScheduleTableProps> = (props) => {
   };
   const methods = useForm<FormValue>({
     defaultValues: {
-      statDate: dayjsWapper("2022-09-21").format("YYYY-MM-DD"),
+      startDate: dayjsWapper("2022-09-21").format("YYYY-MM-DD"),
       endDate: dayjsWapper("2022-09-21")
         .add(8 * 7 - 1, "days")
         .format("YYYY-MM-DD"),
@@ -142,9 +142,9 @@ const ClassScheduleTable: React.FC<ClassScheduleTableProps> = (props) => {
               <FormInputDate
                 required="開始日を入力してください"
                 placeholder="開始日"
-                name="statDate"
+                name="startDate"
                 label="開始日"
-                id="statDate"
+                id="startDate"
               />
               <FormInputDate
                 required="終了日を入力してください"
