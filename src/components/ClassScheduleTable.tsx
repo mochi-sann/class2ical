@@ -31,7 +31,7 @@ type lessonValue = {
   description: string;
   url: number;
 };
-type FormValue = {
+export type FormValue = {
   statDate: string;
   endDate: string;
   Mon: lessonValue[];
