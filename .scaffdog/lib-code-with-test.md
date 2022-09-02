@@ -31,7 +31,7 @@ import { assert, expect, test } from "vitest";
 import  {{ inputs.functionName | pascal }}  from "../{{ inputs.functionName | pascal }}";
 
 
-test("Convert to Icaldeta", () => {
+test("{{ inputs.functionName | kebab }}", () => {
 
   expect( {{ inputs.functionName | pascal }}()).toBe();
 });
