@@ -1,5 +1,11 @@
-import { Button, IconButton, useDisclosure, VStack } from "@chakra-ui/react";
-import React from "react";
+import {
+  Button,
+  HStack,
+  IconButton,
+  useDisclosure,
+  VStack,
+} from "@chakra-ui/react";
+import React, { useState } from "react";
 import {
   Modal,
   ModalOverlay,
@@ -20,24 +26,30 @@ export type AddLessonProps = {
   dayOfweek: "Mon" | "Tue" | "Wed" | "Thu" | "Fri" | "Sat";
 };
 
-const AddLesson: React.FC<AddLessonProps> = (props) => {
+const AddLesson = React.memo<AddLessonProps>(function MyAddLessonComponent(
+  props
+) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { watch } = useFormContext(); // retrieve all hook methods
+  const { getValues, setValue } = useFormContext(); // retrieve all hook methods
   const FormNumber = `${props.dayOfweek}.${props.periodNumber}`;
-  const IsSetClass =
-    watch()[props.dayOfweek] &&
-    watch()[props.dayOfweek][props.periodNumber] &&
-    watch()[props.dayOfweek][props.periodNumber].summar !== "";
-
+  const [LessonClassSummary, setLessonClassSummary] = useState<{
+    summary: string;
+    description: string;
+    url: string;
+  }>({ ...getValues()[props.dayOfweek][props.periodNumber] });
+  const ResetValues = () => {
+    setValue(`${FormNumber}`, { summry: "", description: "", url: "" });
+    setLessonClassSummary({ summary: "", description: "", url: "" });
+  };
   return (
     <>
-      {IsSetClass ? (
+      {LessonClassSummary.summary.length > 0 ? (
         <TableLessonBox
-          LessonTitle={
-            watch()[props.dayOfweek][props.periodNumber].summary as string
-          }
+          LessonTitle={LessonClassSummary.summary}
           onOpen={onOpen}
-          onRemove={() => console.log("close")}
+          onRemove={() => {
+            ResetValues();
+          }}
         />
       ) : (
         <IconButton
@@ -47,11 +59,10 @@ const AddLesson: React.FC<AddLessonProps> = (props) => {
           icon={<AddIcon />}
         />
       )}
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose} closeOnOverlayClick={false}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>授業を追加する</ModalHeader>
-          <ModalCloseButton />
           <ModalBody>
             <VStack spacing={4} py="4" align="stretch">
               <FormInputText
@@ -77,24 +88,42 @@ const AddLesson: React.FC<AddLessonProps> = (props) => {
                 placeholder="URL"
                 label="URL"
               />
-
-              <Button type={"submit"} w="full" colorScheme={"blue"}>
-                add
-              </Button>
             </VStack>
           </ModalBody>
 
           <ModalFooter>
-            {/* <Button colorScheme="blue" mr={3} onClick={onClose}> */}
-            {/* </Button> */}
-            <Button onClick={onClose} colorScheme="red" variant="ghost">
-              キャンセル
-            </Button>
+            <HStack w="full">
+              <Button
+                type={"submit"}
+                onClick={() => {
+                  console.log(getValues()[props.dayOfweek][props.periodNumber]);
+                  // 表示するところに入れる
+                  setLessonClassSummary(
+                    getValues()[props.dayOfweek][props.periodNumber]
+                  );
+                  onClose();
+                }}
+                w="full"
+                colorScheme={"blue"}
+              >
+                追加
+              </Button>
+              <Button
+                w="full"
+                onClick={() => {
+                  onClose();
+                  ResetValues();
+                }}
+                colorScheme="red"
+              >
+                削除する
+              </Button>
+            </HStack>
           </ModalFooter>
         </ModalContent>
       </Modal>
     </>
   );
-};
+});
 
 export default AddLesson;

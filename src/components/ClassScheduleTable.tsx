@@ -47,7 +47,7 @@ type Person = {
 
 const defaultData: Person[] = [0, 1, 2, 3, 4, 5].map((value) => {
   return {
-    periodNumber: value,
+    periodNumber: value + 1,
     Mon: <AddLesson dayOfweek="Mon" periodNumber={value} />,
     Tue: <AddLesson dayOfweek="Tue" periodNumber={value} />,
     Wed: <AddLesson dayOfweek="Wed" periodNumber={value} />,

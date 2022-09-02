@@ -32,31 +32,27 @@ const ClassTableForm: React.FC = () => {
     console.log("submit!!", JSON.stringify(data, null, 2));
   // TODO : なんかいい感じにする
   return (
-    <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(onSubmit)}>
-        <VStack spacing={4} py="4" align="stretch">
-          <FormInputText
-            id="summary"
-            name="summary"
-            placeholder="授業名"
-            label="授業名"
-            required="必須項目です"
-          />
-          <FormTextarea
-            id="description"
-            name="description"
-            label="メモ"
-            placeholder="メモ"
-            miniRows={4}
-          />
-          <FormInputText id="url" name="url" placeholder="URL" label="URL" />
+    <VStack spacing={4} py="4" align="stretch">
+      <FormInputText
+        id="summary"
+        name="summary"
+        placeholder="授業名"
+        label="授業名"
+        required="必須項目です"
+      />
+      <FormTextarea
+        id="description"
+        name="description"
+        label="メモ"
+        placeholder="メモ"
+        miniRows={4}
+      />
+      <FormInputText id="url" name="url" placeholder="URL" label="URL" />
 
-          <Button type={"submit"} w="full" colorScheme={"blue"}>
-            add
-          </Button>
-        </VStack>
-      </form>
-    </FormProvider>
+      <Button type={"submit"} w="full" colorScheme={"blue"}>
+        add
+      </Button>
+    </VStack>
   );
 };
 export default ClassTableForm;
