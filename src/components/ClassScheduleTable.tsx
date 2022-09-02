@@ -16,7 +16,6 @@ import {
   Th,
   Thead,
   Tr,
-  VStack,
 } from "@chakra-ui/react";
 import { FormProvider, useForm } from "react-hook-form";
 import AddLesson from "./AddLesson";
