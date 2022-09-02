@@ -12,7 +12,8 @@ export type FormDateToIcalReturnType = useClassTableIcalProps["init"][0];
 const FormDateToIcal = (
   Args: FormDateToIcalArgsType
 ): FormDateToIcalReturnType => {
-  return;
+  const ReturnValue: FormDateToIcalReturnType = {};
+  return ReturnValue;
 };
 
 export default FormDateToIcal;
