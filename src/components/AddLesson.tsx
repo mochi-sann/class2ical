@@ -20,9 +20,11 @@ import FormInputText from "./FormInputText";
 import FormTextarea from "./FormTextarea";
 import { useFormContext } from "react-hook-form";
 import TableLessonBox from "./TableLessonBox";
+import { ShortDayOfWeekList } from "src/lib/types";
+
 export type AddLessonProps = {
   periodNumber: number;
-  dayOfweek: "Mon" | "Tue" | "Wed" | "Thu" | "Fri" | "Sat";
+  dayOfweek: ShortDayOfWeekList;
 };
 
 const AddLesson = React.memo<AddLessonProps>(function MyAddLessonComponent(
