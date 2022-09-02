@@ -13,7 +13,6 @@ import {
   ModalHeader,
   ModalFooter,
   ModalBody,
-  ModalCloseButton,
 } from "@chakra-ui/react";
 
 import { AddIcon } from "@chakra-ui/icons";

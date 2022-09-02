@@ -97,7 +97,6 @@ const columns = [
 
 const ClassScheduleTable: React.FC<ClassScheduleTableProps> = (props) => {
   const [data, setData] = React.useState(() => [...defaultData]);
-  const rerender = React.useReducer(() => ({}), {})[1];
 
   const table = useReactTable({
     data,
