@@ -22,6 +22,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import AddLesson from "./AddLesson";
 import FormInputDate from "./FormInputDate";
 import { dayjsWapper } from "src/lib/dayjs";
+import FormNumberInput from "./FormNumberInput";
 
 export type ClassScheduleTableProps = {
   // table: useClassTableIcalProps["init"];
@@ -33,7 +34,7 @@ type lessonValue = {
 };
 export type FormValue = {
   startDate: string;
-  endDate: string;
+  count: number;
   Mon: lessonValue[];
   Tue: lessonValue[];
   Wed: lessonValue[];
@@ -120,9 +121,7 @@ const ClassScheduleTable: React.FC<ClassScheduleTableProps> = (props) => {
   const methods = useForm<FormValue>({
     defaultValues: {
       startDate: dayjsWapper("2022-09-21").format("YYYY-MM-DD"),
-      endDate: dayjsWapper("2022-09-21")
-        .add(8 * 7 - 1, "days")
-        .format("YYYY-MM-DD"),
+      count: 8,
       Mon: new Array(6).fill({ ...TestClassSchedule("Mon") }),
       Tue: new Array(6).fill({ ...TestClassSchedule("Tue") }),
       Wed: new Array(6).fill({ ...TestClassSchedule("Wed") }),
@@ -146,12 +145,12 @@ const ClassScheduleTable: React.FC<ClassScheduleTableProps> = (props) => {
                 label="開始日"
                 id="startDate"
               />
-              <FormInputDate
-                required="終了日を入力してください"
-                placeholder="終了日"
-                name="endDate"
-                label="終了日"
-                id="endDate"
+              <FormNumberInput
+                required="授業の週数を入力してください"
+                placeholder="授業の週数"
+                name="count"
+                label="授業の週数"
+                id="count"
               />
             </HStack>
             <TableContainer>
