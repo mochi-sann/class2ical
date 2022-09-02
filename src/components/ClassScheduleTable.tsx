@@ -7,6 +7,8 @@ import {
 } from "@tanstack/react-table";
 import {
   Button,
+  Flex,
+  HStack,
   Table,
   TableContainer,
   Tbody,
@@ -14,9 +16,12 @@ import {
   Th,
   Thead,
   Tr,
+  VStack,
 } from "@chakra-ui/react";
 import { FormProvider, useForm } from "react-hook-form";
 import AddLesson from "./AddLesson";
+import FormInputDate from "./FormInputDate";
+import { dayjsWapper } from "src/lib/dayjs";
 
 export type ClassScheduleTableProps = {
   // table: useClassTableIcalProps["init"];
@@ -27,6 +32,8 @@ type lessonValue = {
   url: number;
 };
 type FormValue = {
+  statDate: string;
+  endDate: string;
   Mon: lessonValue[];
   Tue: lessonValue[];
   Wed: lessonValue[];
@@ -106,6 +113,8 @@ const ClassScheduleTable: React.FC<ClassScheduleTableProps> = (props) => {
 
   const methods = useForm<FormValue>({
     defaultValues: {
+      endDate: dayjsWapper().format("YYYY-MM-DD"),
+      statDate: dayjsWapper().format("YYYY-MM-DD"),
       Mon: new Array(6).fill({ summary: "", description: "", url: "" }),
       Tue: new Array(6).fill({ summary: "", description: "", url: "" }),
       Wed: new Array(6).fill({ summary: "", description: "", url: "" }),
@@ -120,65 +129,83 @@ const ClassScheduleTable: React.FC<ClassScheduleTableProps> = (props) => {
     <div>
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
-          <TableContainer>
-            <Table
-              border={"2px"}
-              borderRadius={"md"}
-              borderColor={"gray.500"}
-              variant="unstyled"
-            >
-              <Thead>
-                {table.getHeaderGroups().map((headerGroup) => (
-                  <Tr key={headerGroup.id}>
-                    {headerGroup.headers.map((header) => (
-                      <Th
-                        borderWidth={"1px"}
-                        borderColor={"gray.500"}
-                        textAlign={"center"}
-                        _first={{ width: "10px" }}
-                        key={header.id}
-                      >
-                        {header.isPlaceholder
-                          ? null
-                          : flexRender(
-                              header.column.columnDef.header,
-                              header.getContext()
-                            )}
-                      </Th>
-                    ))}
-                  </Tr>
-                ))}
-              </Thead>
-              <Tbody>
-                {table.getRowModel().rows.map((row) => (
-                  <Tr
-                    borderBottomWidth={"1px"}
-                    borderTopWidth={"1px"}
-                    borderColor={"gray.500"}
-                    key={row.id}
-                  >
-                    {row.getVisibleCells().map((cell) => (
-                      <Td
-                        textAlign={"center"}
-                        _first={{ borderStartWidth: "0px" }}
-                        borderStartWidth={"1px"}
-                        borderColor={"gray.500"}
-                        key={cell.id}
-                      >
-                        {flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext()
-                        )}
-                      </Td>
-                    ))}
-                  </Tr>
-                ))}
-              </Tbody>
-            </Table>
-          </TableContainer>
-          <Button type={"submit"} w="full" colorScheme={"blue"}>
-            ダウンロード
-          </Button>
+          <Flex flexDir={"column"} gap={4} w="full">
+            <HStack>
+              <FormInputDate
+                required="開始日を入力してください"
+                placeholder="開始日"
+                name="statDate"
+                label="開始日"
+                id="statDate"
+              />
+              <FormInputDate
+                required="終了日を入力してください"
+                placeholder="終了日"
+                name="endDate"
+                label="終了日"
+                id="endDate"
+              />
+            </HStack>
+            <TableContainer>
+              <Table
+                border={"2px"}
+                borderRadius={"md"}
+                borderColor={"gray.500"}
+                variant="unstyled"
+              >
+                <Thead>
+                  {table.getHeaderGroups().map((headerGroup) => (
+                    <Tr key={headerGroup.id}>
+                      {headerGroup.headers.map((header) => (
+                        <Th
+                          borderWidth={"1px"}
+                          borderColor={"gray.500"}
+                          textAlign={"center"}
+                          _first={{ width: "10px" }}
+                          key={header.id}
+                        >
+                          {header.isPlaceholder
+                            ? null
+                            : flexRender(
+                                header.column.columnDef.header,
+                                header.getContext()
+                              )}
+                        </Th>
+                      ))}
+                    </Tr>
+                  ))}
+                </Thead>
+                <Tbody>
+                  {table.getRowModel().rows.map((row) => (
+                    <Tr
+                      borderBottomWidth={"1px"}
+                      borderTopWidth={"1px"}
+                      borderColor={"gray.500"}
+                      key={row.id}
+                    >
+                      {row.getVisibleCells().map((cell) => (
+                        <Td
+                          textAlign={"center"}
+                          _first={{ borderStartWidth: "0px" }}
+                          borderStartWidth={"1px"}
+                          borderColor={"gray.500"}
+                          key={cell.id}
+                        >
+                          {flexRender(
+                            cell.column.columnDef.cell,
+                            cell.getContext()
+                          )}
+                        </Td>
+                      ))}
+                    </Tr>
+                  ))}
+                </Tbody>
+              </Table>
+            </TableContainer>
+            <Button type={"submit"} w="full" colorScheme={"blue"}>
+              ダウンロード
+            </Button>
+          </Flex>
         </form>
       </FormProvider>
     </div>
