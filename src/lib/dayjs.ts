@@ -6,7 +6,7 @@ import weekday from "dayjs/plugin/weekday";
 dayjs.extend(weekday);
 dayjs.extend(timezone);
 dayjs.extend(utc);
-dayjs.tz.setDefault("Asia/Tokyo");
+dayjs.tz.setDefault(dayjs.tz.guess());
 
 const dayjsWapper = dayjs;
 export { dayjsWapper, Dayjs };

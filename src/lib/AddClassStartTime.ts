@@ -1,7 +1,5 @@
-import { Dayjs } from "dayjs";
-
 export type AddClassStartTimeArgsType = {
-  periodNumber: 0 | 1 | 2 | 3 | 4 | 5;
+  periodNumber: number;
 };
 export type AddClassStartTimeReturnType = number;
 

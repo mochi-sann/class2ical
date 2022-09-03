@@ -1,7 +1,6 @@
-import { assert, expect, test } from "vitest";
+import { expect, test } from "vitest";
 
 import GetNextDayOfWeek from "../GetNextDayOfWeek";
-import { dayjsWapper } from "../dayjs";
 
 test("get-next-day-of-week", () => {
   const result = new Date("2022-09-11T00:00:00.000Z");
