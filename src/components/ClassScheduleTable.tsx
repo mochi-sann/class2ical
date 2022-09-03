@@ -32,7 +32,7 @@ export type ClassScheduleTableProps = {
 type lessonValue = {
   summary: string;
   description: string;
-  url: number;
+  url: string;
 };
 export type FormValue = {
   startDate: string;
