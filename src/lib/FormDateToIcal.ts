@@ -1,18 +1,40 @@
+import { ICalEventRepeatingFreq } from "ical-generator";
+
 import { AddLessonProps } from "src/components/AddLesson";
 import { FormValue } from "src/components/ClassScheduleTable";
 import { useClassTableIcalProps } from "src/hooks/useClassTableIcal";
 
+import AddClassStartTime from "./AddClassStartTime";
+import { dayjsWapper, Dayjs } from "./dayjs";
+
 export type FormDateToIcalArgsType = FormValue["Mon"][0] & {
   startDate: string;
-  endDate: string;
+  count: number;
+  periodNumber: number; //1限なら0 2限なら 1が入る
   dayOfweek: AddLessonProps["dayOfweek"];
 };
 export type FormDateToIcalReturnType = useClassTableIcalProps["init"][0];
 
 const FormDateToIcal = (
-  Args: FormDateToIcalArgsType
+  args: FormDateToIcalArgsType
 ): FormDateToIcalReturnType => {
-  const ReturnValue: FormDateToIcalReturnType = {};
+  const StartClassTime = dayjsWapper(args.startDate + "T00:00:00")
+    .tz(dayjsWapper.tz.guess(), true)
+    .add(AddClassStartTime({ periodNumber: args.periodNumber }), "minutes");
+
+  const ReturnValue: FormDateToIcalReturnType = {
+    url: args.url,
+    summary: args.summary,
+    description: args.description,
+    start: StartClassTime.toDate(),
+    end: StartClassTime.add(90, "minutes").toDate(),
+    timezone: dayjsWapper.tz.guess(),
+    repeating: {
+      count: args.count,
+      freq: ICalEventRepeatingFreq["WEEKLY"],
+    },
+  };
+
   return ReturnValue;
 };
 
