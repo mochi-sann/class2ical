@@ -1,21 +1,28 @@
 import React from "react";
 
-import { FormControl, FormErrorMessage, FormLabel } from "@chakra-ui/react";
+import {
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  NumberIncrementStepper,
+  NumberDecrementStepper,
+} from "@chakra-ui/react";
 import { ErrorMessage } from "@hookform/error-message";
 import { useFormContext, ValidationRule } from "react-hook-form";
 
-import { AutoResizeTextarea } from "./AutoResizeTextarea";
-export type FormTextareaProps = {
+export type FormNumberInputProps = {
   id: string;
   name: string;
   label: string;
   placeholder: string;
-  miniRows?: number;
   required?: string | ValidationRule<boolean> | undefined;
   defaultValue?: string;
 };
 
-const FormTextarea: React.FC<FormTextareaProps> = (props) => {
+const FormNumberInput: React.FC<FormNumberInputProps> = (props) => {
   const {
     register,
     formState: { errors },
@@ -24,12 +31,17 @@ const FormTextarea: React.FC<FormTextareaProps> = (props) => {
   return (
     <FormControl id={props.id} isRequired={props.required ? true : false}>
       <FormLabel htmlFor={props.id}>{props.label}</FormLabel>
-      <AutoResizeTextarea
-        defaultValue={props.defaultValue}
-        {...register(props.name, { required: props.required })}
-        placeholder={props.placeholder}
-        minRows={props.miniRows}
-      />
+      <NumberInput min={1} max={52}>
+        <NumberInputField
+          defaultValue={props.defaultValue}
+          {...register(props.name, { required: props.required })}
+          placeholder={props.placeholder}
+        />
+        <NumberInputStepper>
+          <NumberIncrementStepper />
+          <NumberDecrementStepper />
+        </NumberInputStepper>
+      </NumberInput>
       <ErrorMessage
         errors={errors}
         name={props.name}
@@ -41,4 +53,4 @@ const FormTextarea: React.FC<FormTextareaProps> = (props) => {
   );
 };
 
-export default FormTextarea;
+export default FormNumberInput;

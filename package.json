@@ -10,7 +10,9 @@
     "prepare": "husky install",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "scaffdog:generate": "scaffdog generate"
+    "scaffdog:generate": "scaffdog generate",
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.0.9",
@@ -43,16 +45,21 @@
     "@types/node": "18.7.13",
     "@types/react": "18.0.17",
     "@types/react-dom": "18.0.6",
+    "@vitejs/plugin-react": "^2.0.1",
     "babel-loader": "^8.2.5",
     "eslint": "8.23.0",
     "eslint-config-next": "12.2.5",
+    "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-storybook": "^0.6.4",
     "husky": "^8.0.1",
+    "jsdom": "^20.0.0",
     "lint-staged": "^13.0.3",
     "prettier": "2.7.1",
     "rrule": "^2.7.1",
     "scaffdog": "^2.0.3",
-    "typescript": "4.8.2"
+    "typescript": "4.8.2",
+    "vite": "^3.0.9",
+    "vitest": "^0.22.1"
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"

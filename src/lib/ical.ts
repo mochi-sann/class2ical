@@ -1,5 +1,6 @@
-import { Dayjs, dayjsWapper } from "./dayjs";
 import ical, { ICalCalendar, ICalCalendarJSONData } from "ical-generator";
+
+import { Dayjs, dayjsWapper } from "./dayjs";
 
 export const GetClaender = (): ICalCalendar => {
   const calendar = ical({ name: "授業の時間" });

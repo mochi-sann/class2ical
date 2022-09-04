@@ -24,21 +24,34 @@ export const useClassTableIcal = (
       return event.concat(pre);
     });
   };
-  const calendar = ical({ name: "授業の時間" });
-
-  calendar.description(
-    "大学の授業表をGoogle calender などにインポートできるます"
-  );
-  CalenderEvents.map((event) => {
-    calendar.createEvent(event);
-  });
 
   // ファイルをダウンロード
   const DownloadFile = (): string => {
     try {
+      const calendar = ical({ name: "授業の時間" });
+
+      calendar.description(
+        "大学の授業表をGoogle calender などにインポートできるます"
+      );
+
+      calendar.clear();
+      CalenderEvents.map((event) => {
+        calendar.createEvent(event);
+      });
       const CalenderBlob = calendar.toBlob() || "";
+      let dummy_a_el = document.createElement("a");
+      document.body.appendChild(dummy_a_el);
+
+      // a 要素の href 属性に Object URL をセット
+      dummy_a_el.href = URL.createObjectURL(CalenderBlob);
+
+      // a 要素の download 属性にファイル名をセット
+      dummy_a_el.download = "hoge_test.ics";
+      dummy_a_el.click();
+      document.body.removeChild(dummy_a_el);
+
       const CalenderUrl = URL.createObjectURL(CalenderBlob);
-      return CalenderUrl || "/hoge";
+      return CalenderUrl || "/";
     } catch (error) {
       return "/";
     }

@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  createColumnHelper,
-  flexRender,
-  getCoreRowModel,
-  useReactTable,
-} from "@tanstack/react-table";
+
 import {
   Button,
   Flex,
@@ -16,12 +11,22 @@ import {
   Th,
   Thead,
   Tr,
-  VStack,
 } from "@chakra-ui/react";
+import {
+  createColumnHelper,
+  flexRender,
+  getCoreRowModel,
+  useReactTable,
+} from "@tanstack/react-table";
 import { FormProvider, useForm } from "react-hook-form";
+
+import { dayjsWapper } from "src/lib/dayjs";
+
 import AddLesson from "./AddLesson";
 import FormInputDate from "./FormInputDate";
-import { dayjsWapper } from "src/lib/dayjs";
+import FormNumberInput from "./FormNumberInput";
+import { ConvertToIcal } from "src/lib/ConvertToIcal";
+import { useClassTableIcal } from "src/hooks/useClassTableIcal";
 
 export type ClassScheduleTableProps = {
   // table: useClassTableIcalProps["init"];
@@ -29,11 +34,11 @@ export type ClassScheduleTableProps = {
 type lessonValue = {
   summary: string;
   description: string;
-  url: number;
+  url: string;
 };
-type FormValue = {
-  statDate: string;
-  endDate: string;
+export type FormValue = {
+  startDate: string;
+  count: number;
   Mon: lessonValue[];
   Tue: lessonValue[];
   Wed: lessonValue[];
@@ -110,21 +115,30 @@ const ClassScheduleTable: React.FC<ClassScheduleTableProps> = (props) => {
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
-
+  const TestClassSchedule = (dayOfweek: string) => {
+    return {
+      summary: "",
+      description: "",
+      url: "",
+    };
+  };
   const methods = useForm<FormValue>({
     defaultValues: {
-      endDate: dayjsWapper().format("YYYY-MM-DD"),
-      statDate: dayjsWapper().format("YYYY-MM-DD"),
-      Mon: new Array(6).fill({ summary: "", description: "", url: "" }),
-      Tue: new Array(6).fill({ summary: "", description: "", url: "" }),
-      Wed: new Array(6).fill({ summary: "", description: "", url: "" }),
-      Thu: new Array(6).fill({ summary: "", description: "", url: "" }),
-      Fri: new Array(6).fill({ summary: "", description: "", url: "" }),
-      Sat: new Array(6).fill({ summary: "", description: "", url: "" }),
+      startDate: dayjsWapper().format("YYYY-MM-DD"),
+      count: 8,
+      Mon: new Array(6).fill({ ...TestClassSchedule("Mon") }),
+      Tue: new Array(6).fill({ ...TestClassSchedule("Tue") }),
+      Wed: new Array(6).fill({ ...TestClassSchedule("Wed") }),
+      Thu: new Array(6).fill({ ...TestClassSchedule("Thu") }),
+      Fri: new Array(6).fill({ ...TestClassSchedule("Fri") }),
+      Sat: new Array(6).fill({ ...TestClassSchedule("Sat") }),
     },
   });
-  const onSubmit = (data: FormValue) =>
-    console.log("submit!!", JSON.stringify(data, null, 2));
+  const { AddEvent, DownloadFile, setCalenderEvents } = useClassTableIcal();
+  const onSubmit = (data: FormValue) => {
+    setCalenderEvents(ConvertToIcal(data));
+    DownloadFile();
+  };
   return (
     <div>
       <FormProvider {...methods}>
@@ -134,16 +148,16 @@ const ClassScheduleTable: React.FC<ClassScheduleTableProps> = (props) => {
               <FormInputDate
                 required="開始日を入力してください"
                 placeholder="開始日"
-                name="statDate"
+                name="startDate"
                 label="開始日"
-                id="statDate"
+                id="startDate"
               />
-              <FormInputDate
-                required="終了日を入力してください"
-                placeholder="終了日"
-                name="endDate"
-                label="終了日"
-                id="endDate"
+              <FormNumberInput
+                required="授業の週数を入力してください"
+                placeholder="授業の週数"
+                name="count"
+                label="授業の週数"
+                id="count"
               />
             </HStack>
             <TableContainer>
