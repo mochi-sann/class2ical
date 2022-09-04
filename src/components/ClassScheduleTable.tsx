@@ -136,8 +136,8 @@ const ClassScheduleTable: React.FC<ClassScheduleTableProps> = (props) => {
   });
   const { AddEvent, DownloadFile, setCalenderEvents } = useClassTableIcal();
   const onSubmit = (data: FormValue) => {
-    setCalenderEvents(ConvertToIcal(data));
-    DownloadFile();
+    // setCalenderEvents(ConvertToIcal(data));
+    DownloadFile(ConvertToIcal(data));
   };
   return (
     <div>
