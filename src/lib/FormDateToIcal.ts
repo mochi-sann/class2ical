@@ -36,7 +36,6 @@ const FormDateToIcal = (
     AddClasssStartMin,
     "minutes"
   );
-  console.log("startTime", StartTime);
 
   const ReturnValue: FormDateToIcalReturnType = {
     url: args.url,
