@@ -7,7 +7,7 @@ export type ConvertDayOfWeekToNumberReturnType = number;
  */
 const ConvertDayOfWeekToNumber = (
   Args: ConvertDayOfWeekToNumberArgsType
-): ConvertDayOfWeekToNumberReturnType => {
+): number => {
   switch (Args) {
     case "Mon":
       return 1;
