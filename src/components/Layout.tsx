@@ -9,7 +9,7 @@ export type LayoutProps = {
 const Layout: React.FC<LayoutProps> = (props) => {
   return (
     <div>
-      <Container maxWidth={"900px"}>{props.children}</Container>
+      <Container maxWidth={"1400px"}>{props.children}</Container>
     </div>
   );
 };

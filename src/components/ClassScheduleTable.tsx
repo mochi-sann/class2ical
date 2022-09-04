@@ -25,6 +25,8 @@ import { dayjsWapper } from "src/lib/dayjs";
 import AddLesson from "./AddLesson";
 import FormInputDate from "./FormInputDate";
 import FormNumberInput from "./FormNumberInput";
+import { ConvertToIcal } from "src/lib/ConvertToIcal";
+import { useClassTableIcal } from "src/hooks/useClassTableIcal";
 
 export type ClassScheduleTableProps = {
   // table: useClassTableIcalProps["init"];
@@ -115,14 +117,14 @@ const ClassScheduleTable: React.FC<ClassScheduleTableProps> = (props) => {
   });
   const TestClassSchedule = (dayOfweek: string) => {
     return {
-      summary: "テスト授業" + dayOfweek,
-      description: "テスト授業の説明",
-      url: "https://www.google.com/",
+      summary: "",
+      description: "",
+      url: "",
     };
   };
   const methods = useForm<FormValue>({
     defaultValues: {
-      startDate: dayjsWapper("2022-09-21").format("YYYY-MM-DD"),
+      startDate: dayjsWapper().format("YYYY-MM-DD"),
       count: 8,
       Mon: new Array(6).fill({ ...TestClassSchedule("Mon") }),
       Tue: new Array(6).fill({ ...TestClassSchedule("Tue") }),
@@ -132,8 +134,11 @@ const ClassScheduleTable: React.FC<ClassScheduleTableProps> = (props) => {
       Sat: new Array(6).fill({ ...TestClassSchedule("Sat") }),
     },
   });
-  const onSubmit = (data: FormValue) =>
-    console.log("submit!!", JSON.stringify(data, null, 2));
+  const { AddEvent, DownloadFile, setCalenderEvents } = useClassTableIcal();
+  const onSubmit = (data: FormValue) => {
+    setCalenderEvents(ConvertToIcal(data));
+    DownloadFile();
+  };
   return (
     <div>
       <FormProvider {...methods}>
