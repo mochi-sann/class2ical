@@ -1,17 +1,6 @@
 import React from "react";
 
-import {
-  Box,
-  Flex,
-  Avatar,
-  Button,
-  Menu,
-  MenuButton,
-  Stack,
-  Container,
-  Icon,
-  Link,
-} from "@chakra-ui/react";
+import { Box, Flex, Stack, Container, Icon, Link } from "@chakra-ui/react";
 
 import { GitHubIcon, SiteLogoImage } from "./icon";
 
