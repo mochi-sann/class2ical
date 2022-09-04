@@ -6,7 +6,7 @@ export type useClassTableIcalProps = {
   init: Array<ICalEvent | ICalEventData>;
 };
 export type useClassTableIcalTypes = {
-  DownloadFile: () => string | null;
+  DownloadFile: (event: useClassTableIcalProps["init"]) => string | null;
   setCalenderEvents: Dispatch<SetStateAction<(ICalEvent | ICalEventData)[]>>;
   CalenderEvents: useClassTableIcalProps["init"];
   AddEvent: (event: useClassTableIcalProps["init"]) => void;
@@ -26,7 +26,7 @@ export const useClassTableIcal = (
   };
 
   // ファイルをダウンロード
-  const DownloadFile = (): string => {
+  const DownloadFile = (event: useClassTableIcalProps["init"]): string => {
     try {
       const calendar = ical({ name: "授業の時間" });
 
@@ -35,22 +35,23 @@ export const useClassTableIcal = (
       );
 
       calendar.clear();
-      CalenderEvents.map((event) => {
+      event.map((event) => {
         calendar.createEvent(event);
       });
       const CalenderBlob = calendar.toBlob() || "";
+      const CalenderUrl = calendar.toURL();
       let dummy_a_el = document.createElement("a");
+
       document.body.appendChild(dummy_a_el);
 
       // a 要素の href 属性に Object URL をセット
-      dummy_a_el.href = URL.createObjectURL(CalenderBlob);
+      dummy_a_el.href = CalenderUrl;
 
       // a 要素の download 属性にファイル名をセット
-      dummy_a_el.download = "hoge_test.ics";
+      dummy_a_el.download = "大学の授業.ics";
       dummy_a_el.click();
       document.body.removeChild(dummy_a_el);
 
-      const CalenderUrl = URL.createObjectURL(CalenderBlob);
       return CalenderUrl || "/";
     } catch (error) {
       return "/";
