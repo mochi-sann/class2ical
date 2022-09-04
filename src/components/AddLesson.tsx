@@ -41,7 +41,7 @@ const AddLesson = React.memo<AddLessonProps>(function MyAddLessonComponent(
     url: string;
   }>({ ...getValues()[props.dayOfweek][props.periodNumber] });
   const ResetValues = () => {
-    setValue(`${FormNumber}`, { summry: "", description: "", url: "" });
+    setValue(`${FormNumber}`, { summary: "", description: "", url: "" });
     setLessonClassSummary({ summary: "", description: "", url: "" });
   };
   return (
