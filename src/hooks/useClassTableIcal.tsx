@@ -30,9 +30,7 @@ export const useClassTableIcal = (
     try {
       const calendar = ical({ name: "授業の時間" });
 
-      calendar.description(
-        "大学の授業表をGoogle calender などにインポートできるます"
-      );
+      calendar.description("大学の授業のカレンダー");
 
       calendar.clear();
       event.map((event) => {
