@@ -13,6 +13,7 @@ export type FormTextareaProps = {
   miniRows?: number;
   required?: string | ValidationRule<boolean> | undefined;
   defaultValue?: string;
+  onKeyDown?: React.KeyboardEventHandler<HTMLTextAreaElement> | undefined;
 };
 
 const FormTextarea: React.FC<FormTextareaProps> = (props) => {
@@ -25,6 +26,7 @@ const FormTextarea: React.FC<FormTextareaProps> = (props) => {
     <FormControl id={props.id} isRequired={props.required ? true : false}>
       <FormLabel htmlFor={props.id}>{props.label}</FormLabel>
       <AutoResizeTextarea
+        onKeyDown={props.onKeyDown}
         defaultValue={props.defaultValue}
         {...register(props.name, { required: props.required })}
         placeholder={props.placeholder}

@@ -16,6 +16,7 @@ export type InputFormProps = {
   placeholder: string;
   required?: string | ValidationRule<boolean> | undefined;
   defaultValue?: string;
+  onKeyDown?: React.KeyboardEventHandler<HTMLInputElement> | undefined;
 };
 
 const FormInputText: React.FC<InputFormProps> = (props) => {
@@ -28,6 +29,7 @@ const FormInputText: React.FC<InputFormProps> = (props) => {
     <FormControl id={props.id} isRequired={props.required ? true : false}>
       <FormLabel htmlFor={props.id}>{props.label}</FormLabel>
       <Input
+        onKeyDown={props.onKeyDown}
         defaultValue={props.defaultValue}
         {...register(props.name, { required: props.required })}
         type="text"
