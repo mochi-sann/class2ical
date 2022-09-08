@@ -20,6 +20,8 @@ export type FormNumberInputProps = {
   placeholder: string;
   required?: string | ValidationRule<boolean> | undefined;
   defaultValue?: string;
+  max?: number;
+  min?: number;
 };
 
 const FormNumberInput: React.FC<FormNumberInputProps> = (props) => {
@@ -31,7 +33,7 @@ const FormNumberInput: React.FC<FormNumberInputProps> = (props) => {
   return (
     <FormControl id={props.id} isRequired={props.required ? true : false}>
       <FormLabel htmlFor={props.id}>{props.label}</FormLabel>
-      <NumberInput min={1} max={52}>
+      <NumberInput min={props.min} max={props.max}>
         <NumberInputField
           defaultValue={props.defaultValue}
           {...register(props.name, { required: props.required })}

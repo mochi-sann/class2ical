@@ -18,6 +18,7 @@ import {
 } from "@chakra-ui/react";
 import { useFormContext } from "react-hook-form";
 
+import ConvertDayOfWeekToJp from "src/lib/ConvertDayOfWeekToJp";
 import { ShortDayOfWeekList } from "src/lib/types";
 
 import FormInputText from "./FormInputText";
@@ -65,7 +66,10 @@ const AddLesson = React.memo<AddLessonProps>(function MyAddLessonComponent(
       <Modal isOpen={isOpen} onClose={onClose} closeOnOverlayClick={false}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>授業を追加する</ModalHeader>
+          <ModalHeader>
+            {ConvertDayOfWeekToJp(props.dayOfweek)}曜日
+            {props.periodNumber + 1}限の授業を追加
+          </ModalHeader>
           <ModalBody>
             <VStack spacing={4} py="4" align="stretch">
               <FormInputText

@@ -159,6 +159,8 @@ const ClassScheduleTable: React.FC<ClassScheduleTableProps> = (props) => {
                 name="count"
                 label="授業の週数"
                 id="count"
+                min={1}
+                max={52}
               />
             </HStack>
             <TableContainer>
