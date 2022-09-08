@@ -101,6 +101,17 @@ const AddLesson = React.memo<AddLessonProps>(function MyAddLessonComponent(
           <ModalFooter>
             <HStack w="full">
               <Button
+                w="full"
+                onClick={() => {
+                  onClose();
+                  ResetValues();
+                }}
+                colorScheme="red"
+                variant={"ghost"}
+              >
+                削除する
+              </Button>
+              <Button
                 type={"submit"}
                 onClick={() => {
                   console.log(getValues()[props.dayOfweek][props.periodNumber]);
@@ -114,16 +125,6 @@ const AddLesson = React.memo<AddLessonProps>(function MyAddLessonComponent(
                 colorScheme={"blue"}
               >
                 追加
-              </Button>
-              <Button
-                w="full"
-                onClick={() => {
-                  onClose();
-                  ResetValues();
-                }}
-                colorScheme="red"
-              >
-                削除する
               </Button>
             </HStack>
           </ModalFooter>
