@@ -45,6 +45,21 @@ const AddLesson = React.memo<AddLessonProps>(function MyAddLessonComponent(
     setValue(`${FormNumber}`, { summary: "", description: "", url: "" });
     setLessonClassSummary({ summary: "", description: "", url: "" });
   };
+
+  const onSubmit = () => {
+    setLessonClassSummary(getValues()[props.dayOfweek][props.periodNumber]);
+    onClose();
+  };
+  const handleKeyDown = (
+    event: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    // cmd + Enter もしくは ctrl + Enter
+    if (event.key === "Enter" && (event.ctrlKey || event.metaKey)) {
+      console.log("key down cmd + Enter");
+      onSubmit();
+    }
+  };
+
   return (
     <>
       {LessonClassSummary.summary.length > 0 ? (
@@ -68,7 +83,7 @@ const AddLesson = React.memo<AddLessonProps>(function MyAddLessonComponent(
         <ModalContent>
           <ModalHeader>
             {ConvertDayOfWeekToJp(props.dayOfweek)}曜日
-            {props.periodNumber + 1}限の授業を追加
+            {props.periodNumber + 1}限の授業を追加 [a + b] pressed:{" "}
           </ModalHeader>
           <ModalBody>
             <VStack spacing={4} py="4" align="stretch">
@@ -79,6 +94,7 @@ const AddLesson = React.memo<AddLessonProps>(function MyAddLessonComponent(
                 label="授業名"
                 required="必須項目です"
                 defaultValue=""
+                onKeyDown={handleKeyDown}
               />
               <FormTextarea
                 id={`${FormNumber}.description`}
@@ -87,6 +103,7 @@ const AddLesson = React.memo<AddLessonProps>(function MyAddLessonComponent(
                 placeholder="メモ"
                 defaultValue=""
                 miniRows={4}
+                onKeyDown={handleKeyDown}
               />
               <FormInputText
                 id={`${FormNumber}.url`}
@@ -94,6 +111,7 @@ const AddLesson = React.memo<AddLessonProps>(function MyAddLessonComponent(
                 defaultValue=""
                 placeholder="URL"
                 label="URL"
+                onKeyDown={handleKeyDown}
               />
             </VStack>
           </ModalBody>
@@ -114,12 +132,8 @@ const AddLesson = React.memo<AddLessonProps>(function MyAddLessonComponent(
               <Button
                 type={"submit"}
                 onClick={() => {
-                  console.log(getValues()[props.dayOfweek][props.periodNumber]);
+                  onSubmit();
                   // 表示するところに入れる
-                  setLessonClassSummary(
-                    getValues()[props.dayOfweek][props.periodNumber]
-                  );
-                  onClose();
                 }}
                 w="full"
                 colorScheme={"blue"}

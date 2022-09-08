@@ -22,6 +22,7 @@ export type FormNumberInputProps = {
   defaultValue?: string;
   max?: number;
   min?: number;
+  onKeyDown?: React.KeyboardEventHandler<HTMLInputElement> | undefined;
 };
 
 const FormNumberInput: React.FC<FormNumberInputProps> = (props) => {
@@ -38,6 +39,7 @@ const FormNumberInput: React.FC<FormNumberInputProps> = (props) => {
           defaultValue={props.defaultValue}
           {...register(props.name, { required: props.required })}
           placeholder={props.placeholder}
+          onKeyDown={props.onKeyDown}
         />
         <NumberInputStepper>
           <NumberIncrementStepper />
