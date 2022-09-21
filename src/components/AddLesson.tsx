@@ -83,7 +83,7 @@ const AddLesson = React.memo<AddLessonProps>(function MyAddLessonComponent(
         <ModalContent>
           <ModalHeader>
             {ConvertDayOfWeekToJp(props.dayOfweek)}曜日
-            {props.periodNumber + 1}限の授業を追加 [a + b] pressed:{" "}
+            {props.periodNumber + 1}限の授業を追加
           </ModalHeader>
           <ModalBody>
             <VStack spacing={4} py="4" align="stretch">
