@@ -2,6 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  images: {
+    unoptimized: true,
+  },
   webpack: (config) => {
     // 空のオブジェクト渡すことでnpmパッケージがfsモジュールに依存しないようにします
     config.resolve.fallback = {
