@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 1420",
+    "dev": "next dev -p 3000",
     "build": "next build && next export -o dist",
     "tauri": "tauri",
     "start": "next start",

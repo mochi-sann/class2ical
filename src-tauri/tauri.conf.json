@@ -2,20 +2,29 @@
   "build": {
     "beforeDevCommand": "yarn dev",
     "beforeBuildCommand": "yarn build",
-    "devPath": "http://localhost:1420",
+    "devPath": "http://localhost:3000",
     "distDir": "../dist",
-    "withGlobalTauri": false
+    "withGlobalTauri": true
   },
   "package": {
-    "productName": "desktop-app",
+    "productName": "ical-class-timetable-generater",
     "version": "0.0.0"
   },
   "tauri": {
     "allowlist": {
-      "all": false,
+      "all": true,
       "shell": {
         "all": false,
         "open": true
+      },
+      "fs": {
+        "all": false,
+        "readFile": true,
+        "writeFile": true
+      },
+      "dialog": {
+        "all": false,
+        "save": true
       }
     },
     "bundle": {
@@ -33,7 +42,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.tauri.dev",
+      "identifier": "com.mochi33.class2ical.app",
       "longDescription": "",
       "macOS": {
         "entitlements": null,
@@ -60,10 +69,10 @@
     "windows": [
       {
         "fullscreen": false,
-        "height": 600,
+        "height": 800,
         "resizable": true,
         "title": "desktop-app",
-        "width": 800
+        "width": 900
       }
     ]
   }

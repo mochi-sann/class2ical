@@ -48,10 +48,11 @@ export const useClassTableIcal = (
       // a 要素の download 属性にファイル名をセット
       dummy_a_el.download = "大学の授業.ics";
       dummy_a_el.click();
-      document.body.removeChild(dummy_a_el);
+      // document.body.removeChild(dummy_a_el);
 
       return CalenderUrl || "/";
     } catch (error) {
+      console.error(" can not downloadl", error);
       return "/";
     }
   };
