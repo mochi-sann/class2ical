@@ -9,7 +9,9 @@ export type useClassTableIcalProps = {
   init: Array<ICalEvent | ICalEventData>;
 };
 export type useClassTableIcalTypes = {
-  DownloadFile: (event: useClassTableIcalProps["init"]) => string | null;
+  DownloadFile: (
+    event: useClassTableIcalProps["init"]
+  ) => Promise<string | null>;
   setCalenderEvents: Dispatch<SetStateAction<(ICalEvent | ICalEventData)[]>>;
   CalenderEvents: useClassTableIcalProps["init"];
   AddEvent: (event: useClassTableIcalProps["init"]) => void;
