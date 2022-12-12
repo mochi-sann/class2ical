@@ -3506,6 +3506,11 @@
   resolved "https://registry.yarnpkg.com/@tanstack/table-core/-/table-core-8.5.11.tgz#a23178a097df4b0b64bdfa6f79e6d8933e97c7f7"
   integrity sha512-ZN61ockLaIAiiPbZfMKT2S03nbWx28OHg/nAiDnNfmN4QmAMcdwVajPn2QQwnNVGAr4jS4nbhbYzCcjq8livXQ==
 
+"@tauri-apps/api@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@tauri-apps/api/-/api-1.2.0.tgz#1f196b3e012971227f41b98214c846430a4eb477"
+  integrity sha512-lsI54KI6HGf7VImuf/T9pnoejfgkNoXveP14pVV7XarrQ46rOejIVJLFqHI9sRReJMGdh2YuCoI3cc/yCWCsrw==
+
 "@tauri-apps/cli-darwin-arm64@1.2.2":
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/@tauri-apps/cli-darwin-arm64/-/cli-darwin-arm64-1.2.2.tgz#f18b0689b399b64dc67da41c0fd4da474be324fe"

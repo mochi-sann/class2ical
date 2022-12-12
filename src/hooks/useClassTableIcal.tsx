@@ -3,6 +3,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import ical, { ICalEvent, ICalEventData } from "ical-generator";
 
 import { DownloadBrowsser } from "src/lib/DownloadBrowser";
+import { DownloadTauriApp } from "src/lib/DownloadTauriApp";
 
 export type useClassTableIcalProps = {
   init: Array<ICalEvent | ICalEventData>;
@@ -28,8 +29,11 @@ export const useClassTableIcal = (
   };
 
   // ファイルをダウンロード
-  const DownloadFile = (event: useClassTableIcalProps["init"]): string => {
+  const DownloadFile = async (
+    event: useClassTableIcalProps["init"]
+  ): Promise<string> => {
     try {
+      DownloadTauriApp(event);
       return DownloadBrowsser(event);
     } catch (error) {
       console.error(" can not downloadl", error);

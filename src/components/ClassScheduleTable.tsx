@@ -1,6 +1,7 @@
 import React from "react";
 
 import {
+  Box,
   Button,
   Flex,
   HStack,
@@ -219,9 +220,11 @@ const ClassScheduleTable: React.FC<ClassScheduleTableProps> = (props) => {
                 </Tbody>
               </Table>
             </TableContainer>
-            <Button type={"submit"} w="full" colorScheme={"blue"}>
-              ダウンロード
-            </Button>
+            <Box py={4}>
+              <Button type={"submit"} w="full" colorScheme={"blue"}>
+                ダウンロード
+              </Button>
+            </Box>
           </Flex>
         </form>
       </FormProvider>
