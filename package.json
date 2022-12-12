@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "next dev -p 1420",
+    "build": "next build && next export -o dist",
+    "tauri": "tauri",
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky install",
@@ -30,6 +31,7 @@
     "react-textarea-autosize": "^8.3.4"
   },
   "devDependencies": {
+    "@tauri-apps/cli": "^1.2.2",
     "@babel/core": "^7.18.13",
     "@chakra-ui/storybook-addon": "^4.0.10",
     "@hookform/error-message": "^2.0.0",
