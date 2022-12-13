@@ -1,6 +1,6 @@
 [package]
-name = "desktop-app"
-version = "0.0.0"
+name = "class2ical"
+version = "0.1.2"
 description = "A Tauri App"
 authors = ["you"]
 license = ""

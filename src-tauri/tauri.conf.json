@@ -7,8 +7,8 @@
     "withGlobalTauri": true
   },
   "package": {
-    "productName": "ical-class-timetable-generater",
-    "version": "0.0.0"
+    "productName": "class2icall",
+    "version": "0.1.2"
   },
   "tauri": {
     "allowlist": {
@@ -71,7 +71,7 @@
         "fullscreen": false,
         "height": 800,
         "resizable": true,
-        "title": "desktop-app",
+        "title": "class2ical",
         "width": 900
       }
     ]
