@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-
 import { AddIcon } from "@chakra-ui/icons";
+import React, { useState } from "react";
 import {
   Button,
   HStack,
@@ -111,6 +110,14 @@ const AddLesson = React.memo<AddLessonProps>(function MyAddLessonComponent(
                 defaultValue=""
                 placeholder="URL"
                 label="URL"
+                onKeyDown={handleKeyDown}
+              />
+              <FormInputText
+                id={`${FormNumber}.location`}
+                name={`${FormNumber}.location`}
+                defaultValue=""
+                placeholder="場所"
+                label="場所"
                 onKeyDown={handleKeyDown}
               />
             </VStack>

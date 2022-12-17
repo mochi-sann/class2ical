@@ -19,6 +19,7 @@ export const ConvertToIcalMap = (
           summary: value.summary,
           description: value.description,
           url: value.url,
+          location: value.location,
         });
       }
       return null;
