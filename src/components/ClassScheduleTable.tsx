@@ -36,6 +36,7 @@ type lessonValue = {
   summary: string;
   description: string;
   url: string;
+  location: string;
 };
 export type FormValue = {
   startDate: string;
@@ -121,6 +122,7 @@ const ClassScheduleTable: React.FC<ClassScheduleTableProps> = (props) => {
       summary: "",
       description: "",
       url: "",
+      location: "",
     };
   };
   const methods = useForm<FormValue>({
