@@ -32,8 +32,8 @@ jobs:
       - name: "yarn cache"
         uses: actions/cache@v2
         with:
-          path: ${YARN_CACHE_FOLDER}
-          key: ${{ matrix.platform }}-yarn-cache-v1
+        path: ${YARN_CACHE_FOLDER}
+        key: ${{ matrix.platform }}-yarn-cache-v1
       - name: Rust cache
         uses: swatinem/rust-cache@v2
         with:
