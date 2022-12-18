@@ -1,83 +1,67 @@
-name: "release"
-
-on: pull_request
-
+name: "publish"
+on:
+  push:
+    tags:
+      - app-v*
 jobs:
-  create-release:
-    runs-on: ubuntu-20.04
-    outputs:
-      release_id: ${{ steps.create-release.outputs.result }}
-
-    steps:
-      - uses: actions/checkout@v3
-      - name: setup node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - name: get version
-        run: echo "PACKAGE_VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
-      - name: create release
-        id: create-release
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const { data } = await github.rest.repos.createRelease({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              tag_name: `app-v${process.env.PACKAGE_VERSION}`,
-              name: `Desktop App v${process.env.PACKAGE_VERSION}`,
-              body: 'Take a look at the assets to download and install this app.',
-              draft: true,
-              prerelease: false
-            })
-
-            return data.id
-
-  build-tauri:
-    needs: create-release
+  publish-tauri:
     strategy:
       fail-fast: false
       matrix:
-        platform: [macos-latest, ubuntu-20.04, windows-latest]
-
+        platform: [macos-latest, ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.platform }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
       - name: setup node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v2
         with:
           node-version: 16
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::__VERSION__
+        shell: bash
+        ## https://github.com/tauri-apps/tauri/blob/76187298c1d52dc764c5192c6a770a65f44b82ab/.github/workflows/smoke-test-prod.yml
+        ## Following that example, we cache directories for both cargo and node.
+        ## The cache action will check caches before these directories are required, and update the caches if necessary
+        ## at the end of the job (after cargo install and node install if those are necessary).
+      - name: cache rust bin
+        id: cache_rust_bin
+        uses: actions/cache@v1
+        with:
+          path: ~/.cargo/bin/
+          key: ${{ runner.OS }}-xbuild-bin-${{ hashFiles('**/Cargo.toml') }}
+      - name: cache rust registry/index
+        id: cache_rust_reg_index
+        uses: actions/cache@v1
+        with:
+          path: ~/.cargo/registry/index
+          key: ${{ runner.OS }}-xbuild-reg-index-${{ hashFiles('**/Cargo.toml') }}-
+      - name: cache rust registry/cache
+        id: cache_rust_reg_cache
+        uses: actions/cache@v1
+        with:
+          path: ~/.cargo/registry/cache/
+          key: ${{ runner.OS }}-xbuild-reg-cache-${{ hashFiles('**/Cargo.toml') }}-
       - name: install Rust stable
-        uses: dtolnay/rust-toolchain@stable
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          profile: minimal
       - name: install dependencies (ubuntu only)
-        if: matrix.platform == 'ubuntu-20.04'
+        if: matrix.platform == 'ubuntu-latest'
         run: |
           sudo apt-get update
-          sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.0-dev libappindicator3-dev librsvg2-dev patchelf
-      - name: install app dependencies and build it
-        run: yarn && yarn build
-      - uses: tauri-apps/tauri-action@v0
+          sudo apt-get install -y libgtk-3-dev webkit2gtk-4.0 libappindicator3-dev librsvg2-dev patchelf
+      - name: install app dependencies
+        run: npm ci
+      - name: build it
+        run: npm run desktop-release
+      - uses: tauri-apps/tauri-action@dev
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          releaseId: ${{ needs.create-release.outputs.release_id }}
-
-  publish-release:
-    runs-on: ubuntu-20.04
-    needs: [create-release, build-tauri]
-
-    steps:
-      - name: publish release
-        id: publish-release
-        uses: actions/github-script@v6
-        env:
-          release_id: ${{ needs.create-release.outputs.release_id }}
-        with:
-          script: |
-            github.rest.repos.updateRelease({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              release_id: process.env.release_id,
-              draft: false,
-              prerelease: false
-            })
+          releaseName: App v${{ steps.get_version.outputs.VERSION }}
+          tagName: app-v${{ steps.get_version.outputs.VERSION }}
+          releaseBody: "See the assets to download this version and install."
+          releaseDraft: false
+          prerelease: false

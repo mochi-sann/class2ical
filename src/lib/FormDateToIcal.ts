@@ -44,6 +44,7 @@ const FormDateToIcal = (
     start: StartTime.toDate(),
     end: StartTime.add(90, "minutes").toDate(),
     timezone: dayjsWapper.tz.guess(),
+    location: args.location,
     repeating: {
       count: args.count,
       freq: ICalEventRepeatingFreq["WEEKLY"],

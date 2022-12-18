@@ -113,6 +113,14 @@ const AddLesson = React.memo<AddLessonProps>(function MyAddLessonComponent(
                 label="URL"
                 onKeyDown={handleKeyDown}
               />
+              <FormInputText
+                id={`${FormNumber}.location`}
+                name={`${FormNumber}.location`}
+                defaultValue=""
+                placeholder="場所"
+                label="場所"
+                onKeyDown={handleKeyDown}
+              />
             </VStack>
           </ModalBody>
 
