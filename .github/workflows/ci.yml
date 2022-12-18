@@ -24,9 +24,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "yarn"
-      - name: "yarn cache"
-        uses: actions/cache@v2
-        with:
-          path: ${YARN_CACHE_FOLDER}
+      - uses: c-hive/gha-yarn-cache@v2
       - run: yarn install
       - run: TZ=Asia/Tokyo yarn test
