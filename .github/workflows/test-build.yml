@@ -1,6 +1,8 @@
 name: "test-on-pr"
 on: [pull_request]
 
+env:
+  YARN_CACHE_FOLDER: .cache/yarn
 jobs:
   test-tauri:
     strategy:

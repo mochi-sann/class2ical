@@ -6,6 +6,8 @@ name: CI
 on:
   pull_request:
     branches: ["main"]
+env:
+  YARN_CACHE_FOLDER: .cache/yarn
 
 jobs:
   test:

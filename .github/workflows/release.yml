@@ -3,6 +3,8 @@ on:
   push:
     tags:
       - app-v*
+env:
+  YARN_CACHE_FOLDER: .cache/yarn
 jobs:
   publish-tauri:
     strategy:
