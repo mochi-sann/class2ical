@@ -1,4 +1,4 @@
-[![Node.js CI](https://github.com/mochi-sann/my-ical-class-timetable-generater/actions/workflows/node.js.yml/badge.svg)](https://github.com/mochi-sann/my-ical-class-timetable-generater/actions/workflows/node.js.yml)
+[![CI](https://github.com/mochi-sann/my-ical-class-timetable-generater/actions/workflows/ci.yml/badge.svg)](https://github.com/mochi-sann/my-ical-class-timetable-generater/actions/workflows/ci.yml)
 
 # 大学の時間割をカレンダーインポートするくん
 
