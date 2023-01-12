@@ -14,7 +14,9 @@
     "scaffdog:generate": "scaffdog generate",
     "test": "vitest",
     "coverage": "vitest run --coverage",
-    "playwright": "playwright"
+    "playwright": "playwright",
+    "e2e:all": "playwright test",
+    "e2e:chromium": "playwright test --project=chromium"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.0.9",
