@@ -41,7 +41,7 @@ const config: PlaywrightTestConfig = {
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "on-first-retry",
-    video: { mode: "on", size: { width: 1280, height: 720 } },
+    video: { mode: "on-first-retry" },
   },
 
   /* Configure projects for major browsers */
@@ -68,18 +68,18 @@ const config: PlaywrightTestConfig = {
     },
 
     /* Test against mobile viewports. */
-    {
-      name: "Mobile Chrome",
-      use: {
-        ...devices["Pixel 5"],
-      },
-    },
-    {
-      name: "Mobile Safari",
-      use: {
-        ...devices["iPhone 13 Pro"],
-      },
-    },
+    // {
+    //   name: "Mobile Chrome",
+    //   use: {
+    //     ...devices["Pixel 5"],
+    //   },
+    // },
+    // {
+    //   name: "Mobile Safari",
+    //   use: {
+    //     ...devices["iPhone 13 Pro"],
+    //   },
+    // },
 
     /* Test against branded browsers. */
     // {

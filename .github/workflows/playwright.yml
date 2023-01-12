@@ -18,8 +18,12 @@ jobs:
         run: yarn
       - name: Install Playwright Browsers
         run: yarn playwright install --with-deps
-      - name: Run Playwright tests
-        run: yarn e2e:all
+      - name: Run Playwright tests webkit
+        run: yarn playwright test --project=webkit
+      - name: Run Playwright tests firefox
+        run: yarn playwright test --project=firefox
+      - name: Run Playwright tests chrominum
+        run: yarn playwright test --project=chromium
       - uses: actions/upload-artifact@v3
         if: always()
         with:
