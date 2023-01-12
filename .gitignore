@@ -37,3 +37,6 @@ next-env.d.ts
 
 storybook-static
 dist
+/test-results/
+/playwright-report/
+/playwright/.cache/

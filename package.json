@@ -13,7 +13,8 @@
     "build-storybook": "build-storybook",
     "scaffdog:generate": "scaffdog generate",
     "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "playwright": "playwright"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.0.9",
@@ -21,6 +22,7 @@
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
     "@tanstack/react-table": "^8.5.11",
+    "@tauri-apps/api": "^1.2.0",
     "dayjs": "^1.11.5",
     "framer-motion": "^7.2.1",
     "ical-generator": "^3.5.1",
@@ -28,13 +30,13 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.34.2",
-    "@tauri-apps/api": "^1.2.0",
     "react-textarea-autosize": "^8.3.4"
   },
   "devDependencies": {
     "@babel/core": "^7.18.13",
     "@chakra-ui/storybook-addon": "^4.0.10",
     "@hookform/error-message": "^2.0.0",
+    "@playwright/test": "^1.29.2",
     "@storybook/addon-actions": "^6.5.10",
     "@storybook/addon-essentials": "^6.5.10",
     "@storybook/addon-interactions": "^6.5.10",
