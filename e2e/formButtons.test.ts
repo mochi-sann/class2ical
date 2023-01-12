@@ -16,6 +16,7 @@ test("test", async ({ page }) => {
       await page.getByPlaceholder("URL").fill(`https://example.com`);
       await page.getByPlaceholder("場所").fill(`東京都千代田区`);
       await page.getByRole("button", { name: "追加" }).click();
+      await expect(page.getByText(`授業 ${i} ${j}`)).toBeVisible();
     }
   }
   await page.getByPlaceholder("開始日").fill("2023-01-13");
