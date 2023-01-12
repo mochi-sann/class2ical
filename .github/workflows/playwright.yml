@@ -13,17 +13,13 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      # - uses: c-hive/gha-yarn-cache@v2
+      - uses: c-hive/gha-yarn-cache@v2
       - name: Install dependencies
         run: yarn
       - name: Install Playwright Browsers
         run: yarn playwright install --with-deps
-      - name: Run Playwright tests webkit
-        run: yarn playwright test --project=webkit
-      - name: Run Playwright tests firefox
-        run: yarn playwright test --project=firefox
       - name: Run Playwright tests chrominum
-        run: yarn playwright test --project=chromium
+        run: yarn playwright test
       - uses: actions/upload-artifact@v3
         if: always()
         with:
