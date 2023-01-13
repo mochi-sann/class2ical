@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-test("test", async ({ page }) => {
+test("all input", async ({ page }) => {
   await page.goto("http://localhost:3000/");
   for (let i = 0; i < 6; i++) {
     for (let j = 0; j < 6; j++) {
@@ -20,9 +20,7 @@ test("test", async ({ page }) => {
     }
   }
   await page.getByPlaceholder("開始日").fill("2023-01-13");
-  await page.getByPlaceholder("授業の週数").click({
-    clickCount: 3,
-  });
+  await page.getByPlaceholder("終了日").fill("2053-01-12");
   const downloadPromise = page.waitForEvent("download");
   await page.getByRole("button", { name: "ダウンロード" }).click();
   await downloadPromise;
