@@ -1,3 +1,6 @@
 .next/
 storybook-static
 out/
+dist
+src-tauri/target/
+playwright-report/

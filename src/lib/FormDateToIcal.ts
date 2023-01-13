@@ -7,11 +7,11 @@ import { useClassTableIcalProps } from "src/hooks/useClassTableIcal";
 import AddClassStartTime from "./AddClassStartTime";
 import ConvertDayOfWeekToNumber from "./ConvertDayOfWeekToNumber";
 import GetNextDayOfWeek from "./GetNextDayOfWeek";
-import { dayjsWapper, Dayjs } from "./dayjs";
+import { dayjsWapper } from "./dayjs";
 
 export type FormDateToIcalArgsType = FormValue["Mon"][0] & {
   startDate: string;
-  count: number;
+  endDate: string;
   periodNumber: number; //1限なら0 2限なら 1が入る
   dayOfweek: AddLessonProps["dayOfweek"];
 };
@@ -36,6 +36,11 @@ const FormDateToIcal = (
     AddClasssStartMin,
     "minutes"
   );
+  const EndTime = dayjsWapper(args.endDate)
+    .tz("Asia/Tokyo")
+    .hour(23)
+    .minute(59)
+    .toDate();
 
   const ReturnValue: FormDateToIcalReturnType = {
     url: args.url,
@@ -46,8 +51,8 @@ const FormDateToIcal = (
     timezone: dayjsWapper.tz.guess(),
     location: args.location,
     repeating: {
-      count: args.count,
       freq: ICalEventRepeatingFreq["WEEKLY"],
+      until: EndTime,
     },
   };
 

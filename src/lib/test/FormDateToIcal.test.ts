@@ -10,7 +10,7 @@ import { dayjsWapper } from "../dayjs";
 test("Convert to Icaldeta 曜日と startDateが同じ", () => {
   const Value: FormDateToIcalArgsType = {
     startDate: "2022-09-26",
-    count: 8,
+    endDate: "2022-12-01",
     periodNumber: 0,
     dayOfweek: "Mon",
     summary: "授業の名前",
@@ -28,7 +28,11 @@ test("Convert to Icaldeta 曜日と startDateが同じ", () => {
     timezone: "Asia/Tokyo",
     location: "hello",
     repeating: {
-      count: 8,
+      until: dayjsWapper("2022-12-01")
+        .tz("Asia/Tokyo")
+        .hour(23)
+        .minute(59)
+        .toDate(),
       freq: ICalEventRepeatingFreq["WEEKLY"],
     },
   };
@@ -38,7 +42,7 @@ test("Convert to Icaldeta 曜日と startDateが同じ", () => {
 test("Convert to Icaldeta 曜日と startDateが違う", () => {
   const Value: FormDateToIcalArgsType = {
     startDate: "2022-09-24",
-    count: 8,
+    endDate: "2022-12-01",
     periodNumber: 0,
     dayOfweek: "Mon",
     location: "hello",
@@ -56,7 +60,11 @@ test("Convert to Icaldeta 曜日と startDateが違う", () => {
     timezone: "Asia/Tokyo",
     location: "hello",
     repeating: {
-      count: 8,
+      until: dayjsWapper("2022-12-01")
+        .tz("Asia/Tokyo")
+        .hour(23)
+        .minute(59)
+        .toDate(),
       freq: ICalEventRepeatingFreq["WEEKLY"],
     },
   };
@@ -65,7 +73,7 @@ test("Convert to Icaldeta 曜日と startDateが違う", () => {
 test("Convert to Icaldeta:3", () => {
   const Value: FormDateToIcalArgsType = {
     startDate: "2022-09-05",
-    count: 8,
+    endDate: "2022-12-01",
     periodNumber: 5,
     location: "hello",
     dayOfweek: "Fri",
@@ -83,7 +91,11 @@ test("Convert to Icaldeta:3", () => {
     timezone: "Asia/Tokyo",
     location: "hello",
     repeating: {
-      count: 8,
+      until: dayjsWapper("2022-12-01")
+        .tz("Asia/Tokyo")
+        .hour(23)
+        .minute(59)
+        .toDate(),
       freq: ICalEventRepeatingFreq["WEEKLY"],
     },
   };
@@ -92,7 +104,7 @@ test("Convert to Icaldeta:3", () => {
 test("Convert to Icaldeta:4", () => {
   const Value: FormDateToIcalArgsType = {
     startDate: "2022-09-30",
-    count: 8,
+    endDate: "2022-12-01",
     periodNumber: 5,
     dayOfweek: "Mon",
     summary: "授業の名前",
@@ -110,7 +122,11 @@ test("Convert to Icaldeta:4", () => {
     timezone: "Asia/Tokyo",
     location: "hello",
     repeating: {
-      count: 8,
+      until: dayjsWapper("2022-12-01")
+        .tz("Asia/Tokyo")
+        .hour(23)
+        .minute(59)
+        .toDate(),
       freq: ICalEventRepeatingFreq["WEEKLY"],
     },
   };
