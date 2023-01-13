@@ -12,8 +12,8 @@ export const ConvertToIcalMap = (
     .map((value, key) => {
       if (value.summary.length > 0) {
         return FormDateToIcal({
-          count: FormData.count,
           startDate: FormData.startDate,
+          endDate: FormData.endDate,
           dayOfweek: dayOfWeek,
           periodNumber: key,
           summary: value.summary,

@@ -10,7 +10,7 @@ import { dayjsWapper } from "../dayjs";
 test("convert-day-of-week-to-number:Mon", () => {
   const FormValueTest: FormValue = {
     startDate: "2022-09-04",
-    count: 8,
+    endDate: "2022-12-04",
     Mon: [
       {
         summary: "Test",
@@ -254,8 +254,8 @@ test("convert-day-of-week-to-number:Mon", () => {
       timezone: dayjsWapper.tz.guess(),
       location: "hello world",
       repeating: {
-        count: 8,
-        freq: "WEEKLY",
+        freq: ICalEventRepeatingFreq["WEEKLY"],
+        until: dayjsWapper("2022-12-04").toDate(),
       },
     },
   ];
