@@ -28,7 +28,11 @@ test("Convert to Icaldeta 曜日と startDateが同じ", () => {
     timezone: "Asia/Tokyo",
     location: "hello",
     repeating: {
-      until: dayjsWapper("2022-12-01").toDate(),
+      until: dayjsWapper("2022-12-01")
+        .tz("Asia/Tokyo")
+        .hour(23)
+        .minute(59)
+        .toDate(),
       freq: ICalEventRepeatingFreq["WEEKLY"],
     },
   };
@@ -56,7 +60,11 @@ test("Convert to Icaldeta 曜日と startDateが違う", () => {
     timezone: "Asia/Tokyo",
     location: "hello",
     repeating: {
-      until: dayjsWapper("2022-12-01").toDate(),
+      until: dayjsWapper("2022-12-01")
+        .tz("Asia/Tokyo")
+        .hour(23)
+        .minute(59)
+        .toDate(),
       freq: ICalEventRepeatingFreq["WEEKLY"],
     },
   };
@@ -83,7 +91,11 @@ test("Convert to Icaldeta:3", () => {
     timezone: "Asia/Tokyo",
     location: "hello",
     repeating: {
-      until: dayjsWapper("2022-12-01").toDate(),
+      until: dayjsWapper("2022-12-01")
+        .tz("Asia/Tokyo")
+        .hour(23)
+        .minute(59)
+        .toDate(),
       freq: ICalEventRepeatingFreq["WEEKLY"],
     },
   };
@@ -110,7 +122,11 @@ test("Convert to Icaldeta:4", () => {
     timezone: "Asia/Tokyo",
     location: "hello",
     repeating: {
-      until: dayjsWapper("2022-12-01").toDate(),
+      until: dayjsWapper("2022-12-01")
+        .tz("Asia/Tokyo")
+        .hour(23)
+        .minute(59)
+        .toDate(),
       freq: ICalEventRepeatingFreq["WEEKLY"],
     },
   };

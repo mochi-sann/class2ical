@@ -255,11 +255,14 @@ test("convert-day-of-week-to-number:Mon", () => {
       location: "hello world",
       repeating: {
         freq: ICalEventRepeatingFreq["WEEKLY"],
-        until: dayjsWapper("2022-12-04").toDate(),
+        until: dayjsWapper("2022-12-04")
+          .tz("Asia/Tokyo")
+          .hour(23)
+          .minute(59)
+          .toDate(),
       },
     },
   ];
-  console.log("ReturnValue", ReturnValue);
 
   expect(ConvertToIcal(FormValueTest)).toStrictEqual(ReturnValue);
 });

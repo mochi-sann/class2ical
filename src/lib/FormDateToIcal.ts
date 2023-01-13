@@ -36,7 +36,11 @@ const FormDateToIcal = (
     AddClasssStartMin,
     "minutes"
   );
-  const EndTime = dayjsWapper(args.endDate).toDate();
+  const EndTime = dayjsWapper(args.endDate)
+    .tz("Asia/Tokyo")
+    .hour(23)
+    .minute(59)
+    .toDate();
 
   const ReturnValue: FormDateToIcalReturnType = {
     url: args.url,
