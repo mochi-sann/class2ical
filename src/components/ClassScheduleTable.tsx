@@ -40,7 +40,7 @@ type lessonValue = {
 };
 export type FormValue = {
   startDate: string;
-  count: number;
+  endDate: string;
   Mon: lessonValue[];
   Tue: lessonValue[];
   Wed: lessonValue[];
@@ -128,7 +128,7 @@ const ClassScheduleTable: React.FC<ClassScheduleTableProps> = (props) => {
   const methods = useForm<FormValue>({
     defaultValues: {
       startDate: dayjsWapper().format("YYYY-MM-DD"),
-      count: 8,
+      endDate: dayjsWapper().add(90, "day").format("YYYY-MM-DD"),
       Mon: new Array(6).fill({ ...TestClassSchedule("Mon") }),
       Tue: new Array(6).fill({ ...TestClassSchedule("Tue") }),
       Wed: new Array(6).fill({ ...TestClassSchedule("Wed") }),
@@ -137,7 +137,7 @@ const ClassScheduleTable: React.FC<ClassScheduleTableProps> = (props) => {
       Sat: new Array(6).fill({ ...TestClassSchedule("Sat") }),
     },
   });
-  const { AddEvent, DownloadFile, setCalenderEvents } = useClassTableIcal();
+  const { DownloadFile } = useClassTableIcal();
   const onSubmit = (data: FormValue) => {
     console.log("submit!!!!!!!!!!!!");
     // setCalenderEvents(ConvertToIcal(data));
@@ -156,14 +156,12 @@ const ClassScheduleTable: React.FC<ClassScheduleTableProps> = (props) => {
                 label="開始日"
                 id="startDate"
               />
-              <FormNumberInput
-                required="授業の週数を入力してください"
-                placeholder="授業の週数"
-                name="count"
-                label="授業の週数"
-                id="count"
-                min={1}
-                max={52}
+              <FormInputDate
+                required="終了日を入力してください"
+                placeholder="終了日"
+                name="endDate"
+                label="終了日"
+                id="endDate"
               />
             </HStack>
             <TableContainer>
