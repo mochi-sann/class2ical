@@ -16,7 +16,8 @@
     "coverage": "vitest run --coverage",
     "playwright": "playwright",
     "e2e:all": "playwright test",
-    "e2e:chromium": "playwright test --project=chromium"
+    "e2e:chromium": "playwright test --project=chromium",
+    "format": "prettier --write . "
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.0.9",
