@@ -28,7 +28,6 @@ import { dayjsWapper } from "src/lib/dayjs";
 
 import AddLesson from "./AddLesson";
 import FormInputDate from "./FormInputDate";
-import FormNumberInput from "./FormNumberInput";
 import SetLessonTime from "./SetLessonTime";
 
 export type ClassScheduleTableProps = {
