@@ -39,6 +39,13 @@ const FormDateToIcal = (
       return ConvertTimeToMinAndHours({ time: value.start });
     }),
   });
+  const AddClasssEndMin = AddClassStartTime({
+    periodNumber: args.periodNumber,
+    lessonTime: args.lessonTime.map((value) => {
+      return ConvertTimeToMinAndHours({ time: value.end });
+    }),
+  });
+
   const DayOfWeek = ConvertDayOfWeekToNumber(args.dayOfweek);
   const StartClassTimeDate = GetNextDayOfWeek({
     date: args.startDate,
@@ -49,7 +56,11 @@ const FormDateToIcal = (
     AddClasssStartMin,
     "minutes"
   );
-  const EndTime = dayjsWapper(args.endDate)
+  const EndTime = dayjsWapper(StartClassTimeDate).add(
+    AddClasssEndMin,
+    "minutes"
+  );
+  const EndDate = dayjsWapper(args.endDate)
     .tz("Asia/Tokyo")
     .hour(23)
     .minute(59)
@@ -60,12 +71,12 @@ const FormDateToIcal = (
     summary: args.summary,
     description: args.description,
     start: StartTime.toDate(),
-    end: StartTime.add(90, "minutes").toDate(),
+    end: EndTime.toDate(),
     timezone: dayjsWapper.tz.guess(),
     location: args.location,
     repeating: {
       freq: ICalEventRepeatingFreq["WEEKLY"],
-      until: EndTime,
+      until: EndDate,
     },
   };
 
