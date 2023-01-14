@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
-import ical, { ICalEvent, ICalEventData } from "ical-generator";
+import { ICalEvent, ICalEventData } from "ical-generator";
 
 import { DownloadBrowsser } from "src/lib/DownloadBrowser";
 import { DownloadTauriApp } from "src/lib/DownloadTauriApp";

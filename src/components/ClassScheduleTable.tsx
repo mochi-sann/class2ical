@@ -5,6 +5,7 @@ import {
   Button,
   Flex,
   HStack,
+  Input,
   Table,
   TableContainer,
   Tbody,
@@ -27,7 +28,7 @@ import { dayjsWapper } from "src/lib/dayjs";
 
 import AddLesson from "./AddLesson";
 import FormInputDate from "./FormInputDate";
-import FormNumberInput from "./FormNumberInput";
+import SetLessonTime from "./SetLessonTime";
 
 export type ClassScheduleTableProps = {
   // table: useClassTableIcalProps["init"];
@@ -41,6 +42,7 @@ type lessonValue = {
 export type FormValue = {
   startDate: string;
   endDate: string;
+  LessonTime: Array<{ start: string; end: string }>;
   Mon: lessonValue[];
   Tue: lessonValue[];
   Wed: lessonValue[];
@@ -50,7 +52,7 @@ export type FormValue = {
 };
 
 type Person = {
-  periodNumber: number;
+  periodNumber: null | React.ReactElement;
   Mon: null | React.ReactElement;
   Tue: null | React.ReactElement;
   Wed: null | React.ReactElement;
@@ -61,7 +63,7 @@ type Person = {
 
 const defaultData: Person[] = [0, 1, 2, 3, 4, 5].map((value) => {
   return {
-    periodNumber: value + 1,
+    periodNumber: <SetLessonTime lessonNumber={value + 1} />,
     Mon: <AddLesson dayOfweek="Mon" periodNumber={value} />,
     Tue: <AddLesson dayOfweek="Tue" periodNumber={value} />,
     Wed: <AddLesson dayOfweek="Wed" periodNumber={value} />,
@@ -129,6 +131,15 @@ const ClassScheduleTable: React.FC<ClassScheduleTableProps> = (props) => {
     defaultValues: {
       startDate: dayjsWapper().format("YYYY-MM-DD"),
       endDate: dayjsWapper().add(90, "day").format("YYYY-MM-DD"),
+
+      LessonTime: [
+        { start: "08:40", end: "10:10" },
+        { start: "10:20", end: "11:50" },
+        { start: "12:40", end: "14:10" },
+        { start: "14:20", end: "15:50" },
+        { start: "16:00", end: "17:30" },
+        { start: "17:40", end: "19:10" },
+      ],
       Mon: new Array(6).fill({ ...TestClassSchedule("Mon") }),
       Tue: new Array(6).fill({ ...TestClassSchedule("Tue") }),
       Wed: new Array(6).fill({ ...TestClassSchedule("Wed") }),
@@ -139,7 +150,7 @@ const ClassScheduleTable: React.FC<ClassScheduleTableProps> = (props) => {
   });
   const { DownloadFile } = useClassTableIcal();
   const onSubmit = (data: FormValue) => {
-    console.log("submit!!!!!!!!!!!!");
+    console.log(data);
     // setCalenderEvents(ConvertToIcal(data));
     DownloadFile(ConvertToIcal(data));
   };
