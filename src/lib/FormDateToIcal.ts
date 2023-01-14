@@ -6,9 +6,9 @@ import { useClassTableIcalProps } from "src/hooks/useClassTableIcal";
 
 import AddClassStartTime from "./AddClassStartTime";
 import ConvertDayOfWeekToNumber from "./ConvertDayOfWeekToNumber";
+import ConvertTimeToMinAndHours from "./ConvertTimeToMinAndHours";
 import GetNextDayOfWeek from "./GetNextDayOfWeek";
 import { dayjsWapper } from "./dayjs";
-import ConvertTimeToMinAndHours from "./ConvertTimeToMinAndHours";
 
 export type FormDateToIcalArgsType = FormValue["Mon"][0] & {
   startDate: string;
