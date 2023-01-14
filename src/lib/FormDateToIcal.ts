@@ -8,12 +8,14 @@ import AddClassStartTime from "./AddClassStartTime";
 import ConvertDayOfWeekToNumber from "./ConvertDayOfWeekToNumber";
 import GetNextDayOfWeek from "./GetNextDayOfWeek";
 import { dayjsWapper } from "./dayjs";
+import ConvertTimeToMinAndHours from "./ConvertTimeToMinAndHours";
 
 export type FormDateToIcalArgsType = FormValue["Mon"][0] & {
   startDate: string;
   endDate: string;
   periodNumber: number; //1限なら0 2限なら 1が入る
   dayOfweek: AddLessonProps["dayOfweek"];
+  lessonTime: FormValue["LessonTime"];
 };
 export type FormDateToIcalReturnType = useClassTableIcalProps["init"][0];
 
@@ -22,9 +24,20 @@ const FormDateToIcal = (
 ): FormDateToIcalReturnType => {
   const StartClassTime = dayjsWapper(args.startDate + "T00:00:00")
     .tz(dayjsWapper.tz.guess(), true)
-    .add(AddClassStartTime({ periodNumber: args.periodNumber }), "minutes");
+    .add(
+      AddClassStartTime({
+        periodNumber: args.periodNumber,
+        lessonTime: args.lessonTime.map((value) => {
+          return ConvertTimeToMinAndHours({ time: value.start });
+        }),
+      }),
+      "minutes"
+    );
   const AddClasssStartMin = AddClassStartTime({
     periodNumber: args.periodNumber,
+    lessonTime: args.lessonTime.map((value) => {
+      return ConvertTimeToMinAndHours({ time: value.start });
+    }),
   });
   const DayOfWeek = ConvertDayOfWeekToNumber(args.dayOfweek);
   const StartClassTimeDate = GetNextDayOfWeek({
