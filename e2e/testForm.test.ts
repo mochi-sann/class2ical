@@ -21,11 +21,7 @@ test("フォームのテスト", async ({ page }) => {
   await expect(page.locator("form")).toHaveText(/bbbbbbbbbbbb/);
 
   await page
-    .getByRole("row", {
-      name: "4 授業を追加する 授業を追加する 授業を追加する 授業を追加する Close bbbbbbbbbbbb 開く 授業を追加する",
-    })
-    .getByRole("button", { name: "授業を追加する" })
-    .nth(1)
+    .locator("tr:nth-child(3) > td:nth-child(3) > .chakra-button")
     .click();
   await page.getByPlaceholder("授業名").fill("ccccccccccccccc");
   await page.getByPlaceholder("メモ").click();
