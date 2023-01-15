@@ -1,4 +1,4 @@
-import { Flex, Heading, VStack } from "@chakra-ui/react";
+import { Flex, Heading } from "@chakra-ui/react";
 import Head from "next/head";
 
 import ClassScheduleTable from "src/components/ClassScheduleTable";
@@ -9,17 +9,14 @@ const Home: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>大学の時間割をカレンダーインポートするくん</title>
-        <meta
-          property="og:title"
-          content="大学の時間割をカレンダーインポートするくん"
-        />
+        <title>class2ical</title>
+        <meta property="og:title" content="class2ical" />
         <meta property="og:type" content="website" />
         <link rel="icon" href="/favicon.ico" />
 
         <meta
           property="og:description"
-          content="大学の時間割を入力するとカレンダーにインポートするファイルを生成します"
+          content="大学の時間割を入力するとカレンダーにインポート出来るファイルを生成します"
         />
         <meta property="og:url" content="https://class2ical.mochi33.com" />
         <meta
