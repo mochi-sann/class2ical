@@ -1,12 +1,10 @@
-import dayjs from "dayjs";
 import { ICalEventRepeatingFreq } from "ical-generator";
-import { assert, expect, test } from "vitest";
+import { expect, test } from "vitest";
 
 import { FormValue } from "src/components/ClassScheduleTable";
 
 import { ConvertToIcal } from "../ConvertToIcal";
 import { dayjsWapper } from "../dayjs";
-import { describe } from "node:test";
 
 test("convert-day-of-week-to-number:Mon", () => {
   const FormValueTest: FormValue = {
