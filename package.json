@@ -24,6 +24,7 @@
     "@chakra-ui/react": "^2.2.9",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
+    "@next/bundle-analyzer": "^13.1.2",
     "@tanstack/react-table": "^8.5.11",
     "@tauri-apps/api": "^1.2.0",
     "dayjs": "^1.11.5",

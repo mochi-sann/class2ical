@@ -6,6 +6,7 @@ import { FormValue } from "src/components/ClassScheduleTable";
 
 import { ConvertToIcal } from "../ConvertToIcal";
 import { dayjsWapper } from "../dayjs";
+import { describe } from "node:test";
 
 test("convert-day-of-week-to-number:Mon", () => {
   const FormValueTest: FormValue = {
