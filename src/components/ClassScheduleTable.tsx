@@ -5,12 +5,10 @@ import {
   Button,
   Flex,
   HStack,
-  Input,
   Table,
   TableContainer,
   Tbody,
   Td,
-  Text,
   Th,
   Thead,
   Tr,
@@ -115,7 +113,7 @@ const columns = [
 ];
 
 const ClassScheduleTable: React.FC<ClassScheduleTableProps> = (props) => {
-  const [data, setData] = React.useState(() => [...defaultData]);
+  const [data] = React.useState(() => [...defaultData]);
 
   const table = useReactTable({
     data,
