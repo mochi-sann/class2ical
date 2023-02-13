@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import {
   Box,
@@ -13,6 +13,7 @@ import {
   Th,
   Thead,
   Tr,
+  VStack,
 } from "@chakra-ui/react";
 import {
   createColumnHelper,
@@ -29,6 +30,7 @@ import { dayjsWapper } from "src/lib/dayjs";
 import AddLesson from "./AddLesson";
 import FormInputDate from "./FormInputDate";
 import SetLessonTime from "./SetLessonTime";
+import { useLocalStorage } from "react-use";
 
 export type ClassScheduleTableProps = {
   // table: useClassTableIcalProps["init"];
@@ -119,6 +121,7 @@ const ClassScheduleTable: React.FC<ClassScheduleTableProps> = (props) => {
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
+
   const TestClassSchedule = (dayOfweek: string) => {
     return {
       summary: "",
@@ -127,30 +130,37 @@ const ClassScheduleTable: React.FC<ClassScheduleTableProps> = (props) => {
       location: "",
     };
   };
-  const methods = useForm<FormValue>({
-    defaultValues: {
-      startDate: dayjsWapper().format("YYYY-MM-DD"),
-      endDate: dayjsWapper().add(90, "day").format("YYYY-MM-DD"),
+  const defaultValues: FormValue = {
+    startDate: dayjsWapper().format("YYYY-MM-DD"),
+    endDate: dayjsWapper().add(90, "day").format("YYYY-MM-DD"),
 
-      LessonTime: [
-        { start: "08:40", end: "10:10" },
-        { start: "10:20", end: "11:50" },
-        { start: "12:40", end: "14:10" },
-        { start: "14:20", end: "15:50" },
-        { start: "16:00", end: "17:30" },
-        { start: "17:40", end: "19:10" },
-      ],
-      Mon: new Array(6).fill({ ...TestClassSchedule("Mon") }),
-      Tue: new Array(6).fill({ ...TestClassSchedule("Tue") }),
-      Wed: new Array(6).fill({ ...TestClassSchedule("Wed") }),
-      Thu: new Array(6).fill({ ...TestClassSchedule("Thu") }),
-      Fri: new Array(6).fill({ ...TestClassSchedule("Fri") }),
-      Sat: new Array(6).fill({ ...TestClassSchedule("Sat") }),
-    },
+    LessonTime: [
+      { start: "08:40", end: "10:10" },
+      { start: "10:20", end: "11:50" },
+      { start: "12:40", end: "14:10" },
+      { start: "14:20", end: "15:50" },
+      { start: "16:00", end: "17:30" },
+      { start: "17:40", end: "19:10" },
+    ],
+    Mon: new Array(6).fill({ ...TestClassSchedule("Mon") }),
+    Tue: new Array(6).fill({ ...TestClassSchedule("Tue") }),
+    Wed: new Array(6).fill({ ...TestClassSchedule("Wed") }),
+    Thu: new Array(6).fill({ ...TestClassSchedule("Thu") }),
+    Fri: new Array(6).fill({ ...TestClassSchedule("Fri") }),
+    Sat: new Array(6).fill({ ...TestClassSchedule("Sat") }),
+  };
+
+  const [LocalStoragevalue, setLocalStorageValue] = useLocalStorage<FormValue>(
+    "form-local-storage",
+    defaultValues
+  );
+
+  const methods = useForm<FormValue>({
+    defaultValues: LocalStoragevalue,
   });
+  useEffect(() => {}, []);
   const { DownloadFile } = useClassTableIcal();
   const onSubmit = (data: FormValue) => {
-    console.log(data);
     // setCalenderEvents(ConvertToIcal(data));
     DownloadFile(ConvertToIcal(data));
   };
@@ -232,9 +242,30 @@ const ClassScheduleTable: React.FC<ClassScheduleTableProps> = (props) => {
               </Table>
             </TableContainer>
             <Box py={4}>
-              <Button type={"submit"} w="full" colorScheme={"blue"}>
-                ダウンロード
-              </Button>
+              <VStack>
+                <Button type={"submit"} w="full" colorScheme={"blue"}>
+                  ダウンロード
+                </Button>
+                <Button
+                  w="full"
+                  colorScheme={"green"}
+                  onClick={() => {
+                    setLocalStorageValue(methods.getValues());
+                  }}
+                >
+                  ブラウザに保存
+                </Button>
+                <Button
+                  w="full"
+                  colorScheme={"red"}
+                  onClick={() => {
+                    setLocalStorageValue(defaultValues);
+                    location.reload();
+                  }}
+                >
+                  リセット
+                </Button>
+              </VStack>
             </Box>
           </Flex>
         </form>
