@@ -10,6 +10,7 @@ import {
   TableContainer,
   Tbody,
   Td,
+  Text,
   Th,
   Thead,
   Tr,
@@ -22,6 +23,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { FormProvider, useForm } from "react-hook-form";
+import { useLocalStorage } from "react-use";
 
 import { useClassTableIcal } from "src/hooks/useClassTableIcal";
 import { ConvertToIcal } from "src/lib/ConvertToIcal";
@@ -30,7 +32,6 @@ import { dayjsWapper } from "src/lib/dayjs";
 import AddLesson from "./AddLesson";
 import FormInputDate from "./FormInputDate";
 import SetLessonTime from "./SetLessonTime";
-import { useLocalStorage } from "react-use";
 
 export type ClassScheduleTableProps = {
   // table: useClassTableIcalProps["init"];
@@ -156,10 +157,17 @@ const ClassScheduleTable: React.FC<ClassScheduleTableProps> = (props) => {
   );
 
   const methods = useForm<FormValue>({
-    defaultValues: LocalStoragevalue,
+    defaultValues: defaultValues,
   });
-  useEffect(() => {}, []);
+
+  useEffect(() => {
+    if (LocalStoragevalue) {
+      methods.reset(LocalStoragevalue);
+    }
+  }, []);
+
   const { DownloadFile } = useClassTableIcal();
+
   const onSubmit = (data: FormValue) => {
     // setCalenderEvents(ConvertToIcal(data));
     DownloadFile(ConvertToIcal(data));
