@@ -252,15 +252,15 @@ const ClassScheduleTable: React.FC<ClassScheduleTableProps> = (props) => {
                 <Button type={"submit"} w="full" colorScheme={"blue"}>
                   ダウンロード
                 </Button>
-                <Button
-                  w="full"
-                  colorScheme={"green"}
-                  onClick={() => {
-                    setLocalStorageValue(methods.getValues());
-                  }}
-                >
-                  ブラウザに保存
-                </Button>
+                {/* <Button */}
+                {/*   w="full" */}
+                {/*   colorScheme={"green"} */}
+                {/*   onClick={() => { */}
+                {/*     setLocalStorageValue(methods.getValues()); */}
+                {/*   }} */}
+                {/* > */}
+                {/*   ブラウザに保存 */}
+                {/* </Button> */}
                 <Button
                   w="full"
                   colorScheme={"red"}
