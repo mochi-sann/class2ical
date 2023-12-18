@@ -1,9 +1,22 @@
 {
-  "name": "my-ical-class-timetable-generater",
+  "name": "calss2ical",
   "version": "0.2.0",
   "private": true,
   "scripts": {
-    "dev": "turbo dev"
+    "dev": "next dev -p 3000",
+    "build": "next build && next export -o dist",
+    "tauri": "tauri",
+    "start": "next start",
+    "lint": "next lint",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "scaffdog:generate": "scaffdog generate",
+    "test": "vitest",
+    "coverage": "vitest run --coverage",
+    "playwright": "playwright",
+    "e2e:all": "playwright test",
+    "e2e:chromium": "playwright test --project=chromium",
+    "format": "prettier --write . "
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.0.9",
@@ -49,26 +62,15 @@
     "eslint-config-next": "12.2.5",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-storybook": "^0.6.4",
-    "husky": "^8.0.1",
     "jsdom": "^20.0.0",
     "lint-staged": "^13.0.3",
     "prettier": "2.7.1",
     "rrule": "^2.7.1",
     "scaffdog": "^2.0.3",
-    "turbo": "^1.11.2",
-    "typescript": "4.8.2",
     "vite": "^3.0.9",
     "vitest": "^0.22.1"
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
-  },
-  "volta": {
-    "node": "20.10.0",
-    "npm": "10.2.5"
-  },
-  "workspaces": [
-    "apps/*",
-    "libs/*"
-  ]
+  }
 }
