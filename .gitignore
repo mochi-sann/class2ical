@@ -43,3 +43,4 @@ dist
 
 .turbo
 apps/class2ical/.next
+apps/class2ical/node_modules/.vitest
