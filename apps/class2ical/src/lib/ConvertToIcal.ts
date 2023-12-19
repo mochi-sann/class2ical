@@ -1,6 +1,5 @@
-import { FormValue } from "src/components/ClassScheduleTable";
-import { useClassTableIcalProps } from "src/hooks/useClassTableIcal";
-
+import { FormValue } from "../components/ClassScheduleTable";
+import { useClassTableIcalProps } from "../hooks/useClassTableIcal";
 import FormDateToIcal from "./FormDateToIcal";
 import { ShortDayOfWeekList } from "./types";
 

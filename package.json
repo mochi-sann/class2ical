@@ -3,7 +3,9 @@
   "version": "0.2.0",
   "private": true,
   "scripts": {
-    "dev": "turbo dev"
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "check-types": "tsc --noemit"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.0.9",

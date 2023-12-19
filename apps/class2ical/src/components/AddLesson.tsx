@@ -18,12 +18,11 @@ import {
 } from "@chakra-ui/react";
 import { useFormContext } from "react-hook-form";
 
-import ConvertDayOfWeekToJp from "src/lib/ConvertDayOfWeekToJp";
-import { ShortDayOfWeekList } from "src/lib/types";
-
 import FormInputText from "./FormInputText";
 import FormTextarea from "./FormTextarea";
 import TableLessonBox from "./TableLessonBox";
+import { ShortDayOfWeekList } from "../lib/types";
+import ConvertDayOfWeekToJp from "../lib/ConvertDayOfWeekToJp";
 
 export type AddLessonProps = {
   periodNumber: number;

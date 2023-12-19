@@ -1,9 +1,8 @@
 import { Flex, Heading } from "@chakra-ui/react";
 import Head from "next/head";
 
-import ClassScheduleTable from "src/components/ClassScheduleTable";
-
 import type { NextPage } from "next";
+import ClassScheduleTable from "../components/ClassScheduleTable";
 
 const Home: NextPage = () => {
   return (

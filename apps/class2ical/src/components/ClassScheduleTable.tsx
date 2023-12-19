@@ -23,13 +23,12 @@ import {
 import { FormProvider, useForm } from "react-hook-form";
 import { useLocalStorage } from "react-use";
 
-import { useClassTableIcal } from "src/hooks/useClassTableIcal";
-import { ConvertToIcal } from "src/lib/ConvertToIcal";
-import { dayjsWapper } from "src/lib/dayjs";
-
 import AddLesson from "./AddLesson";
 import FormInputDate from "./FormInputDate";
 import SetLessonTime from "./SetLessonTime";
+import { dayjsWapper } from "../lib/dayjs";
+import { useClassTableIcal } from "../hooks/useClassTableIcal";
+import { ConvertToIcal } from "../lib/ConvertToIcal";
 
 export type ClassScheduleTableProps = {
   // table: useClassTableIcalProps["init"];

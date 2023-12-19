@@ -1,8 +1,7 @@
 import { save } from "@tauri-apps/api/dialog";
 import { writeTextFile } from "@tauri-apps/api/fs";
 import ical from "ical-generator";
-
-import { useClassTableIcalProps } from "src/hooks/useClassTableIcal";
+import { useClassTableIcalProps } from "../hooks/useClassTableIcal";
 
 export const DownloadTauriApp = async (
   event: useClassTableIcalProps["init"]

@@ -1,6 +1,5 @@
 import ical from "ical-generator";
-
-import { useClassTableIcalProps } from "src/hooks/useClassTableIcal";
+import { useClassTableIcalProps } from "../hooks/useClassTableIcal";
 
 export const DownloadBrowsser = (
   event: useClassTableIcalProps["init"]

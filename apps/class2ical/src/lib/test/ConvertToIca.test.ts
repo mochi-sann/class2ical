@@ -1,7 +1,6 @@
 import { ICalEventRepeatingFreq } from "ical-generator";
 import { expect, test } from "vitest";
-
-import { FormValue } from "src/components/ClassScheduleTable";
+import { FormValue } from "../../components/ClassScheduleTable";
 
 import { ConvertToIcal } from "../ConvertToIcal";
 import { dayjsWapper } from "../dayjs";
