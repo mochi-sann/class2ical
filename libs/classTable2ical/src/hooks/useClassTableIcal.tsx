@@ -1,6 +1,8 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 import { ICalEvent, ICalEventData } from "ical-generator";
+import { DownloadTauriApp } from "../DownloadTauriApp";
+import { DownloadBrowsser } from "../DownloadBrowser";
 
 export type useClassTableIcalProps = {
   init: Array<ICalEvent | ICalEventData>;

@@ -1,11 +1,12 @@
 {
-  "name": "my-ical-class-timetable-generater",
+  "name": "class2ical",
   "version": "0.2.0",
   "private": true,
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
-    "check-types": "tsc --noemit"
+    "check-types": "tsc --noemit",
+    "format": "prettier --write . "
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.0.9",
@@ -23,7 +24,8 @@
     "react-dom": "18.2.0",
     "react-hook-form": "^7.43.1",
     "react-textarea-autosize": "^8.3.4",
-    "react-use": "^17.4.0"
+    "react-use": "^17.4.0",
+    "@class2ical/ical": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.18.13",

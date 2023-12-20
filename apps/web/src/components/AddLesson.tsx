@@ -21,8 +21,7 @@ import { useFormContext } from "react-hook-form";
 import FormInputText from "./FormInputText";
 import FormTextarea from "./FormTextarea";
 import TableLessonBox from "./TableLessonBox";
-import { ShortDayOfWeekList } from "../lib/types";
-import ConvertDayOfWeekToJp from "../lib/ConvertDayOfWeekToJp";
+import { ConvertDayOfWeekToJp, ShortDayOfWeekList } from "@class2ical/ical";
 
 export type AddLessonProps = {
   periodNumber: number;

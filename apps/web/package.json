@@ -15,8 +15,7 @@
     "coverage": "vitest run --coverage",
     "playwright": "playwright",
     "e2e:all": "playwright test",
-    "e2e:chromium": "playwright test --project=chromium",
-    "format": "prettier --write . "
+    "e2e:chromium": "playwright test --project=chromium"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.0.9",
@@ -34,7 +33,8 @@
     "react-dom": "18.2.0",
     "react-hook-form": "^7.43.1",
     "react-textarea-autosize": "^8.3.4",
-    "react-use": "^17.4.0"
+    "react-use": "^17.4.0",
+    "@class2ical/ical": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.18.13",
@@ -57,13 +57,6 @@
     "@vitejs/plugin-react": "^2.0.1",
     "@vitest/coverage-c8": "^0.27.1",
     "@vitest/ui": "^0.27.1",
-    "babel-loader": "^8.2.5",
-    "eslint": "8.23.0",
-    "eslint-config-next": "12.2.5",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-storybook": "^0.6.4",
-    "jsdom": "^20.0.0",
-    "lint-staged": "^13.0.3",
     "prettier": "2.7.1",
     "rrule": "^2.7.1",
     "scaffdog": "^2.0.3",
