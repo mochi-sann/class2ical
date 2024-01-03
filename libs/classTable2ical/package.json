@@ -1,11 +1,12 @@
 {
-  "name": "@class2ical/ical",
+  "name": "class2ical",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.ts",
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "tsc"
   },
   "exports": {
     ".": "./index.ts"
